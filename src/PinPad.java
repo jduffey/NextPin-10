@@ -27,4 +27,12 @@ public class PinPad {
         return secretNumber;
 
     }
+
+    public Integer getKeyNumber() {
+        return 1;
+    }
+
+    public Integer getDirectionNumber() {
+        return 1;
+    }
 }

@@ -47,4 +47,11 @@ public class Tests {
         assertTrue(pinPad.padNumbers.contains(8));
     }
 
+    @Test
+    public void thePinPadHasGettersOfKeyNumberAndDirectionNumber(){
+        PinPad pinPad = new PinPad();
+        assertNotNull(pinPad.getKeyNumber());
+        assertNotNull(pinPad.getDirectionNumber());
+    }
+
 }
