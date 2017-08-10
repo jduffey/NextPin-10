@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Created by jedduffey on 8/9/17.
@@ -43,5 +44,9 @@ public class PinPad {
 
     public void setDirectionNumber(int directionNumber) {
         this.directionNumber = directionNumber;
+    }
+
+    public void shuffle() {
+        Collections.shuffle(padNumbers);
     }
 }
