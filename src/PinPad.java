@@ -5,6 +5,7 @@ import java.util.ArrayList;
  */
 public class PinPad {
 
+    public static final int HOW_MANY_NUMBERS_ON_THE_PINPAD = 9;
     private final int keyNumber;
     private final int directionNumber;
 
@@ -17,7 +18,8 @@ public class PinPad {
 
         padNumbers = new ArrayList<Integer>();
 
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i <
+                HOW_MANY_NUMBERS_ON_THE_PINPAD; i++) {
             padNumbers.add(i);
         }
     }
