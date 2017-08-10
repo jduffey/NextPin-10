@@ -9,6 +9,15 @@ public class PinPad {
 
     public PinPad() {
         padNumbers = new ArrayList<Integer>();
+        padNumbers.add(5);
+        padNumbers.add(5);
+        padNumbers.add(5);
+        padNumbers.add(5);
+        padNumbers.add(5);
+        padNumbers.add(5);
+        padNumbers.add(5);
+        padNumbers.add(5);
+        padNumbers.add(5);
     }
 
     public int returnSecretNumber() {

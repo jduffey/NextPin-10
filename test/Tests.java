@@ -1,5 +1,6 @@
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 /**
@@ -23,6 +24,12 @@ public class Tests {
     public void thePinPadShouldHaveAnArrayList(){
         PinPad pinPad = new PinPad();
         assertNotNull(pinPad.padNumbers);
+    }
+
+    @Test
+    public void theArrayListIsOfSizeNine(){
+        PinPad pinPad = new PinPad();
+        assertEquals(9, pinPad.padNumbers.size());
     }
 
 }
