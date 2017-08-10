@@ -8,16 +8,12 @@ public class PinPad {
     ArrayList<Integer> padNumbers;
 
     public PinPad() {
+
         padNumbers = new ArrayList<Integer>();
-        padNumbers.add(0);
-        padNumbers.add(1);
-        padNumbers.add(2);
-        padNumbers.add(3);
-        padNumbers.add(4);
-        padNumbers.add(5);
-        padNumbers.add(6);
-        padNumbers.add(7);
-        padNumbers.add(8);
+
+        for (int i = 0; i < 9; i++) {
+            padNumbers.add(i);
+        }
     }
 
     public int returnSecretNumber() {
