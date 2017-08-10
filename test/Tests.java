@@ -2,6 +2,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by jedduffey on 8/9/17.
@@ -30,6 +31,20 @@ public class Tests {
     public void theArrayListIsOfSizeNine(){
         PinPad pinPad = new PinPad();
         assertEquals(9, pinPad.padNumbers.size());
+    }
+
+    @Test
+    public void theArrayListContainsTheNumbersZeroThroughNine(){
+        PinPad pinPad = new PinPad();
+        assertTrue(pinPad.padNumbers.contains(0));
+        assertTrue(pinPad.padNumbers.contains(1));
+        assertTrue(pinPad.padNumbers.contains(2));
+        assertTrue(pinPad.padNumbers.contains(3));
+        assertTrue(pinPad.padNumbers.contains(4));
+        assertTrue(pinPad.padNumbers.contains(5));
+        assertTrue(pinPad.padNumbers.contains(6));
+        assertTrue(pinPad.padNumbers.contains(7));
+        assertTrue(pinPad.padNumbers.contains(8));
     }
 
 }
