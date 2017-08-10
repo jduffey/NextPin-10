@@ -1,6 +1,5 @@
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 /**
@@ -18,6 +17,12 @@ public class Tests {
     public void thePinPadClassShouldHaveAMethodThatReturnsTheSecretNumber(){
         PinPad pinPad = new PinPad();
         assertNotNull(pinPad.returnSecretNumber());
+    }
+
+    @Test
+    public void thePinPadShouldHaveAnArrayList(){
+        PinPad pinPad = new PinPad();
+        assertNotNull(pinPad.padNumbers);
     }
 
 }
