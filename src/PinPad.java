@@ -5,9 +5,15 @@ import java.util.ArrayList;
  */
 public class PinPad {
 
+    private final int keyNumber;
+    private final int directionNumber;
+
     ArrayList<Integer> padNumbers;
 
-    public PinPad() {
+    public PinPad(int keyNumber, int directionNumber) {
+
+        this.keyNumber = keyNumber;
+        this.directionNumber = directionNumber;
 
         padNumbers = new ArrayList<Integer>();
 
@@ -24,11 +30,11 @@ public class PinPad {
 
     }
 
-    public Integer getKeyNumber() {
-        return 1;
+    public int getKeyNumber() {
+        return keyNumber;
     }
 
-    public Integer getDirectionNumber() {
-        return 1;
+    public int getDirectionNumber() {
+        return directionNumber;
     }
 }
