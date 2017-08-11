@@ -99,7 +99,6 @@ public class Tests {
         assertEquals(6, pinPad.returnNumber(PinPad.BOTTOM_LEFT_INDEX));
         assertEquals(7, pinPad.returnNumber(PinPad.BOTTOM_CENTER_INDEX));
         assertEquals(8, pinPad.returnNumber(PinPad.BOTTOM_RIGHT_INDEX));
-
     }
 
 }
