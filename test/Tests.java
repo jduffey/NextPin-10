@@ -11,7 +11,7 @@ public class Tests {
     private PinPad pinPad;
 
     @Before
-    public void setup(){
+    public void setup() {
         pinPad = new PinPad();
     }
 
@@ -72,18 +72,18 @@ public class Tests {
     }
 
     @Test
-    public void thePinPadShouldHaveAMethodForSettingTheNumbersForTestingPurposes(){
-        pinPad.setNumbers(0,1,2,3,4,5,6,7,8);
-        for(Integer i = 0; i < 9; i++){
+    public void thePinPadShouldHaveAMethodForSettingTheNumbersForTestingPurposes() {
+        pinPad.setNumbers(0, 1, 2, 3, 4, 5, 6, 7, 8);
+        for (Integer i = 0; i < 9; i++) {
             assertEquals(i, pinPad.padNumbers.get(i));
         }
     }
 
     @Test
-    public void ifTheDirectionNumberIsInTheCenterThenTheSecretNumberIsJustTheKeyNumber(){
+    public void ifTheDirectionNumberIsInTheCenterThenTheSecretNumberIsJustTheKeyNumber() {
         pinPad.setKeyNumber(1);
         pinPad.setDirectionNumber(5);
-        pinPad.setNumbers(0,1,2,3,4,5,6,7,8);
+        pinPad.setNumbers(0, 1, 2, 3, 4, 5, 6, 7, 8);
         assertEquals(pinPad.returnSecretNumber(), pinPad.getKeyNumber());
     }
 
