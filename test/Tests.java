@@ -71,4 +71,13 @@ public class Tests {
         );
     }
 
+    @Test
+    public void thePinPadShouldHaveAMethodForSettingTheNumbersForTestingPurposes(){
+        PinPad pinPad = new PinPad();
+        pinPad.setNumbers(0,1,2,3,4,5,6,7,8);
+        for(Integer i = 0; i < 9; i++){
+            assertEquals(i, pinPad.padNumbers.get(i));
+        }
+    }
+
 }
