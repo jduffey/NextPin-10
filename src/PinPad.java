@@ -7,6 +7,15 @@ import java.util.Collections;
 public class PinPad {
 
     public static final int HOW_MANY_NUMBERS_ON_THE_PINPAD = 9;
+    public static final int TOP_LEFT = 0;
+    public static final int TOP_CENTER = 1;
+    public static final int TOP_RIGHT = 2;
+    public static final int MIDDLE_LEFT = 3;
+    public static final int MIDDLE_CENTER = 4;
+    public static final int MIDDLE_RIGHT = 5;
+    public static final int BOTTOM_LEFT = 6;
+    public static final int BOTTOM_CENTER = 7;
+    public static final int BOTTOM_RIGHT = 8;
     private int keyNumber;
     private int directionNumber;
 
@@ -64,38 +73,38 @@ public class PinPad {
     }
 
     public int returnTopLeft() {
-        return padNumbers.indexOf(0);
+        return padNumbers.indexOf(TOP_LEFT);
     }
 
     public int returnTopCenter() {
-        return padNumbers.indexOf(1);
+        return padNumbers.indexOf(TOP_CENTER);
     }
 
     public int returnTopRight() {
-        return padNumbers.indexOf(2);
+        return padNumbers.indexOf(TOP_RIGHT);
     }
 
     public int returnMiddleLeft() {
-        return padNumbers.indexOf(3);
+        return padNumbers.indexOf(MIDDLE_LEFT);
     }
 
     public int returnMiddleCenter() {
-        return padNumbers.indexOf(4);
+        return padNumbers.indexOf(MIDDLE_CENTER);
     }
 
     public int returnMiddleRight() {
-        return padNumbers.indexOf(5);
+        return padNumbers.indexOf(MIDDLE_RIGHT);
     }
 
     public int returnBottomLeft() {
-        return padNumbers.indexOf(6);
+        return padNumbers.indexOf(BOTTOM_LEFT);
     }
 
     public int returnBottomCenter() {
-        return padNumbers.indexOf(7);
+        return padNumbers.indexOf(BOTTOM_CENTER);
     }
 
     public int returnBottomRight() {
-        return padNumbers.indexOf(8);
+        return padNumbers.indexOf(BOTTOM_RIGHT);
     }
 }
