@@ -24,7 +24,7 @@ public class PinPad {
 
     public int returnSecretNumber() {
 
-        int secretNumber = -1;
+        int secretNumber = 1;
 
         return secretNumber;
 
