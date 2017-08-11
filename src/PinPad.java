@@ -50,15 +50,16 @@ public class PinPad {
         Collections.shuffle(padNumbers);
     }
 
-    public void setNumbers(Integer i0, Integer i1, Integer i2, Integer i3, Integer i4, Integer i5, Integer i6, Integer i7, Integer i8) {
-        padNumbers.set(0, i0);
-        padNumbers.set(1, i1);
-        padNumbers.set(2, i2);
-        padNumbers.set(3, i3);
-        padNumbers.set(4, i4);
-        padNumbers.set(5, i5);
-        padNumbers.set(6, i6);
-        padNumbers.set(7, i7);
-        padNumbers.set(8, i8);
+    public void setNumbers(Integer topLeft, Integer topCenter, Integer topRight, Integer middleLeft, Integer middleCenter, Integer middleRight
+            , Integer bottomLeft, Integer bottomCenter, Integer bottomRight) {
+        padNumbers.set(0, topLeft);
+        padNumbers.set(1, topCenter);
+        padNumbers.set(2, topRight);
+        padNumbers.set(3, middleLeft);
+        padNumbers.set(4, middleCenter);
+        padNumbers.set(5, middleRight);
+        padNumbers.set(6, bottomLeft);
+        padNumbers.set(7, bottomCenter);
+        padNumbers.set(8, bottomRight);
     }
 }
