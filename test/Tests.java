@@ -87,4 +87,18 @@ public class Tests {
         assertEquals(pinPad.returnSecretNumber(), pinPad.getKeyNumber());
     }
 
+    @Test
+    public void pinPadShouldHaveMethodsForReturningIndexValuesBasedOnTheNamesOfTheirPositionsInTheArray() {
+        pinPad.setNumbers(0, 1, 2, 3, 4, 5, 6, 7, 8);
+        assertEquals(0, pinPad.returnTopLeft());
+        assertEquals(1, pinPad.returnTopCenter());
+        assertEquals(2, pinPad.returnTopRight());
+        assertEquals(3, pinPad.returnMiddleLeft());
+        assertEquals(4, pinPad.returnMiddleCenter());
+        assertEquals(5, pinPad.returnMiddleRight());
+        assertEquals(6, pinPad.returnBottomLeft());
+        assertEquals(7, pinPad.returnBottomCenter());
+        assertEquals(8, pinPad.returnBottomRight());
+    }
+
 }

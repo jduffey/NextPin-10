@@ -62,4 +62,40 @@ public class PinPad {
         padNumbers.set(7, bottomCenter);
         padNumbers.set(8, bottomRight);
     }
+
+    public int returnTopLeft() {
+        return padNumbers.indexOf(0);
+    }
+
+    public int returnTopCenter() {
+        return padNumbers.indexOf(1);
+    }
+
+    public int returnTopRight() {
+        return padNumbers.indexOf(2);
+    }
+
+    public int returnMiddleLeft() {
+        return padNumbers.indexOf(3);
+    }
+
+    public int returnMiddleCenter() {
+        return padNumbers.indexOf(4);
+    }
+
+    public int returnMiddleRight() {
+        return padNumbers.indexOf(5);
+    }
+
+    public int returnBottomLeft() {
+        return padNumbers.indexOf(6);
+    }
+
+    public int returnBottomCenter() {
+        return padNumbers.indexOf(7);
+    }
+
+    public int returnBottomRight() {
+        return padNumbers.indexOf(8);
+    }
 }
