@@ -8,11 +8,11 @@ import static org.junit.Assert.*;
  */
 public class Tests {
 
-    private PinPad pinPad = new PinPad();
+    private PinPad pinPad;
 
     @Before
     public void setup(){
-        PinPad pinPad = new PinPad();
+        pinPad = new PinPad();
     }
 
     @Test
