@@ -90,15 +90,16 @@ public class Tests {
     @Test
     public void pinPadShouldHaveMethodsForReturningIndexValuesBasedOnTheNamesOfTheirPositionsInTheArray() {
         pinPad.setNumbers(0, 1, 2, 3, 4, 5, 6, 7, 8);
-        assertEquals(0, pinPad.returnTopLeft());
-        assertEquals(1, pinPad.returnTopCenter());
-        assertEquals(2, pinPad.returnTopRight());
-        assertEquals(3, pinPad.returnMiddleLeft());
-        assertEquals(4, pinPad.returnMiddleCenter());
-        assertEquals(5, pinPad.returnMiddleRight());
-        assertEquals(6, pinPad.returnBottomLeft());
-        assertEquals(7, pinPad.returnBottomCenter());
-        assertEquals(8, pinPad.returnBottomRight());
+        assertEquals(0, pinPad.returnNumber(PinPad.TOP_LEFT));
+        assertEquals(1, pinPad.returnNumber(PinPad.TOP_CENTER));
+        assertEquals(2, pinPad.returnNumber(PinPad.TOP_RIGHT));
+        assertEquals(3, pinPad.returnNumber(PinPad.MIDDLE_LEFT));
+        assertEquals(4, pinPad.returnNumber(PinPad.MIDDLE_CENTER));
+        assertEquals(5, pinPad.returnNumber(PinPad.MIDDLE_RIGHT));
+        assertEquals(6, pinPad.returnNumber(PinPad.BOTTOM_LEFT));
+        assertEquals(7, pinPad.returnNumber(PinPad.BOTTOM_CENTER));
+        assertEquals(8, pinPad.returnNumber(PinPad.BOTTOM_RIGHT));
+
     }
 
 }

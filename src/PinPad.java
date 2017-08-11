@@ -72,39 +72,8 @@ public class PinPad {
         padNumbers.set(8, bottomRight);
     }
 
-    public int returnTopLeft() {
-        return padNumbers.indexOf(TOP_LEFT);
+    public int returnNumber(int positionOfNumberToReturn){
+        return padNumbers.indexOf(positionOfNumberToReturn);
     }
 
-    public int returnTopCenter() {
-        return padNumbers.indexOf(TOP_CENTER);
-    }
-
-    public int returnTopRight() {
-        return padNumbers.indexOf(TOP_RIGHT);
-    }
-
-    public int returnMiddleLeft() {
-        return padNumbers.indexOf(MIDDLE_LEFT);
-    }
-
-    public int returnMiddleCenter() {
-        return padNumbers.indexOf(MIDDLE_CENTER);
-    }
-
-    public int returnMiddleRight() {
-        return padNumbers.indexOf(MIDDLE_RIGHT);
-    }
-
-    public int returnBottomLeft() {
-        return padNumbers.indexOf(BOTTOM_LEFT);
-    }
-
-    public int returnBottomCenter() {
-        return padNumbers.indexOf(BOTTOM_CENTER);
-    }
-
-    public int returnBottomRight() {
-        return padNumbers.indexOf(BOTTOM_RIGHT);
-    }
 }
