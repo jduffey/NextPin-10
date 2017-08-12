@@ -278,4 +278,26 @@ public class Tests {
         assertEquals(2, pinPad.returnSecretNumber());
     }
 
+    @Test
+    public void ifDirectionNumberIsInBottomRightCornerThenSecretNumberCanBeFound() {
+
+        /*This can be achieved by applying the extracted methods for moving the index down and to the right.
+        In all cases the direction number is in the bottomRight position.*/
+
+        pinPad.setKeyNumber(1);
+        pinPad.setDirectionNumber(5);
+
+        // The key number is in the top right (so must move down one and wrap horizontally). 
+        pinPad.setNumbers(3, 4, 1, 6, 7, 0, 8, 2, 5);
+        assertEquals(6, pinPad.returnSecretNumber());
+
+        // The key number is in the center (so must move down one and to the right).
+        pinPad.setNumbers(2, 7, 3, 4, 1, 8, 0, 6, 5);
+        assertEquals(5, pinPad.returnSecretNumber());
+
+        // The key number is in the bottom left (so must wrap vertically and to the right).
+        pinPad.setNumbers(3, 4, 6, 7, 0, 2, 1, 8, 5);
+        assertEquals(4, pinPad.returnSecretNumber());
+    }
+
 }
