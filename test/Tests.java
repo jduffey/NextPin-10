@@ -96,35 +96,24 @@ public class Tests {
     @Test
     public void ifDirectionNumberIsTopCenterThenSecretNumberIsDirectlyUpOneRowFromKeyNumber() {
 
-        // This is achieved by moving back three indices from the key number and taking modulo array size if needed.
-        // In this test we will examine three cases where the key number is on different rows.
-        // In all cases the direction number is in the topCenter position.
+        /*This is achieved by moving back three indices from the key number and taking modulo array size.
+        Math.floorMod() must be used! Thank you https://stackoverflow.com/questions/5385024/mod-in-java-produces-negative-numbers
+        In this test we will examine three cases where the key number is on different rows.
+        In all cases the direction number is in the topCenter position.*/
 
         pinPad.setKeyNumber(1);
         pinPad.setDirectionNumber(5);
 
         // The key number is in the top row (top left). 
-
-        pinPad.setNumbers(1, 5, 2,
-                3, 4, 0,
-                7, 6, 8);
-
+        pinPad.setNumbers(1, 5, 2, 3, 4, 0, 7, 6, 8);
         assertEquals(7, pinPad.returnSecretNumber());
 
         // The key number is in the middle row (middle center).
-
-        pinPad.setNumbers(0, 5, 2,
-                3, 1, 4,
-                6, 7, 8);
-
+        pinPad.setNumbers(0, 5, 2, 3, 1, 4, 6, 7, 8);
         assertEquals(5, pinPad.returnSecretNumber());
 
         // The key number is in the bottom row (bottom right).
-
-        pinPad.setNumbers(0, 5, 2,
-                3, 4, 8,
-                6, 7, 1);
-
+        pinPad.setNumbers(0, 5, 2, 3, 4, 8, 6, 7, 1);
         assertEquals(8, pinPad.returnSecretNumber());
 
     }
