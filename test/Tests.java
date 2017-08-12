@@ -118,4 +118,27 @@ public class Tests {
 
     }
 
+    @Test
+    public void ifDirectionNumberIsBottomCenterThenSecretNumberIsDirectlyDownOneRowFromKeyNumber() {
+
+        /*This is achieved by moving forward three indices from the key number and taking modulo array size.
+        In all cases the direction number is in the bottomCenter position.*/
+
+        pinPad.setKeyNumber(1);
+        pinPad.setDirectionNumber(5);
+
+        // The key number is in the top row (top left). 
+        pinPad.setNumbers(1, 6, 3, 2, 4, 8, 0, 5, 7);
+        assertEquals(2, pinPad.returnSecretNumber());
+
+        // The key number is in the middle row (middle center).
+        pinPad.setNumbers(8, 0, 4, 7, 1, 2, 3, 5, 6);
+        assertEquals(5, pinPad.returnSecretNumber());
+
+        // The key number is in the bottom row (bottom right).
+        pinPad.setNumbers(0, 2, 6, 4, 7, 8, 3, 5, 1);
+        assertEquals(6, pinPad.returnSecretNumber());
+
+    }
+
 }
