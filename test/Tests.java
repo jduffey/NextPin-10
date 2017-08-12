@@ -300,4 +300,43 @@ public class Tests {
         assertEquals(4, pinPad.returnSecretNumber());
     }
 
+    @Test
+    public void randomizedTestCases(){
+
+        pinPad.setKeyNumber(1);
+        pinPad.setDirectionNumber(5);
+
+        pinPad.setNumbers(5,1,4,8,2,3,6,7,0);
+        assertEquals(6,pinPad.returnSecretNumber());
+        pinPad.setNumbers(3,0,8,5,1,4,6,2,7);
+        assertEquals(5,pinPad.returnSecretNumber());
+        pinPad.setNumbers(2,8,6,3,4,0,1,5,7);
+        assertEquals(2,pinPad.returnSecretNumber());
+        pinPad.setNumbers(1,7,6,3,5,2,8,4,0);
+        assertEquals(1,pinPad.returnSecretNumber());
+        pinPad.setNumbers(6,8,5,1,0,2,3,7,4);
+        assertEquals(8,pinPad.returnSecretNumber());
+        pinPad.setNumbers(4,8,3,1,0,7,6,2,5);
+        assertEquals(2,pinPad.returnSecretNumber());
+        pinPad.setNumbers(6,5,7,0,2,1,4,3,8);
+        assertEquals(7,pinPad.returnSecretNumber());
+        pinPad.setNumbers(7,2,3,4,8,6,5,0,1);
+        assertEquals(2,pinPad.returnSecretNumber());
+        pinPad.setNumbers(2,1,7,8,4,6,0,5,3);
+        assertEquals(4,pinPad.returnSecretNumber());
+        pinPad.setNumbers(8,2,3,1,7,6,4,5,0);
+        assertEquals(4,pinPad.returnSecretNumber());
+        pinPad.setNumbers(8,1,6,4,7,5,3,0,2);
+        assertEquals(6,pinPad.returnSecretNumber());
+        pinPad.setNumbers(1,3,7,8,2,4,6,0,5);
+        assertEquals(2,pinPad.returnSecretNumber());
+        pinPad.setNumbers(5,4,6,0,3,8,7,1,2);
+        assertEquals(0,pinPad.returnSecretNumber());
+        pinPad.setNumbers(3,6,1,0,7,5,8,4,2);
+        assertEquals(3,pinPad.returnSecretNumber());
+        pinPad.setNumbers(4,1,0,6,5,2,7,8,3);
+        assertEquals(1,pinPad.returnSecretNumber());
+
+    }
+
 }
