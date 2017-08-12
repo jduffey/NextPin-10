@@ -43,13 +43,7 @@ public class PinPadTests {
     }
 
     @Test
-    public void thePinPadHasGettersOfKeyNumberAndDirectionNumber() {
-        assertNotNull(pinPad.getKeyNumber());
-        assertNotNull(pinPad.getDirectionNumber());
-    }
-
-    @Test
-    public void thePinPadHasSettersForKeyNumberAndDirectionNumber() {
+    public void thePinPadHasSettersAndGettersForKeyNumberAndDirectionNumber() {
         pinPad.setKeyNumber(1);
         pinPad.setDirectionNumber(5);
         assertEquals(1, pinPad.getKeyNumber());
