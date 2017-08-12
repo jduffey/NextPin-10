@@ -42,12 +42,11 @@ public class PinPad {
         int indexOfSecretNumber;
 
         switch (indexOfDirectionNumber) {
-            case TOP_CENTER_INDEX: //indexOfKeyNumber = padNumbers.indexOf(getKeyNumber());
+            case TOP_CENTER_INDEX:
                 indexOfSecretNumber = Math.floorMod(indexOfKeyNumber + PAD_DIRECTION_UP_ONE_ROW, padNumbers.size());
                 secretNumber = padNumbers.get(indexOfSecretNumber);
                 break;
             case BOTTOM_CENTER_INDEX:
-                //indexOfKeyNumber = padNumbers.indexOf(getKeyNumber());
                 indexOfSecretNumber = Math.floorMod(indexOfKeyNumber + PAD_DIRECTION_DOWN_ONE_ROW, padNumbers.size());
                 secretNumber = padNumbers.get(indexOfSecretNumber);
                 break;
