@@ -47,6 +47,10 @@ public class PinPad {
             secretNumber = padNumbers.get(indexOfSecretNumber);
         }
 
+        if (padNumbers.indexOf(getDirectionNumber()) == MIDDLE_CENTER_INDEX) {
+            secretNumber = getKeyNumber();
+        }
+
         return secretNumber;
 
     }

@@ -141,4 +141,27 @@ public class Tests {
 
     }
 
+    @Test
+    public void ifDirectionNumberIsCenterThenSecretNumberIsSameAsKeyNumber() {
+
+        /*This is achieved simply by assigning the value of the key number to the secret number.
+        In all cases the direction number is in the middleCenter position.*/
+
+        pinPad.setKeyNumber(1);
+        pinPad.setDirectionNumber(5);
+
+        // The key number is in the top row (top left). 
+        pinPad.setNumbers(1, 7, 8, 4, 5, 0, 2, 3, 6);
+        assertEquals(1, pinPad.returnSecretNumber());
+
+        // The key number is in the middle row (middle right).
+        pinPad.setNumbers(2, 4, 7, 6, 5, 1, 0, 3, 8);
+        assertEquals(1, pinPad.returnSecretNumber());
+
+        // The key number is in the bottom row (bottom left).
+        pinPad.setNumbers(2, 6, 8, 3, 5, 4, 1, 7, 0);
+        assertEquals(1, pinPad.returnSecretNumber());
+
+    }
+
 }
