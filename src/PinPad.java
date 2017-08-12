@@ -16,6 +16,8 @@ public class PinPad {
     public static final int BOTTOM_LEFT_INDEX = 6;
     public static final int BOTTOM_CENTER_INDEX = 7;
     public static final int BOTTOM_RIGHT_INDEX = 8;
+    public static final int PAD_DIRECTION_UP_ONE_ROW = -3;
+    public static final int PAD_DIRECTION_DOWN_ONE_ROW = 3;
     private int keyNumber;
     private int directionNumber;
 
@@ -37,13 +39,13 @@ public class PinPad {
 
         if (padNumbers.indexOf(getDirectionNumber()) == TOP_CENTER_INDEX) {
             int indexOfKeyNumber = padNumbers.indexOf(getKeyNumber());
-            int indexOfSecretNumber = Math.floorMod(indexOfKeyNumber - 3, padNumbers.size());
+            int indexOfSecretNumber = Math.floorMod(indexOfKeyNumber + PAD_DIRECTION_UP_ONE_ROW, padNumbers.size());
             secretNumber = padNumbers.get(indexOfSecretNumber);
         }
 
         if (padNumbers.indexOf(getDirectionNumber()) == BOTTOM_CENTER_INDEX) {
             int indexOfKeyNumber = padNumbers.indexOf(getKeyNumber());
-            int indexOfSecretNumber = Math.floorMod(indexOfKeyNumber + 3, padNumbers.size());
+            int indexOfSecretNumber = Math.floorMod(indexOfKeyNumber + PAD_DIRECTION_DOWN_ONE_ROW, padNumbers.size());
             secretNumber = padNumbers.get(indexOfSecretNumber);
         }
 
