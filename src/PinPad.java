@@ -54,19 +54,33 @@ public class PinPad {
                 secretNumber = getKeyNumber();
                 break;
             case MIDDLE_RIGHT_INDEX:
-                if (indexOfKeyNumber == TOP_RIGHT_INDEX || indexOfKeyNumber == MIDDLE_RIGHT_INDEX || indexOfKeyNumber == BOTTOM_RIGHT_INDEX) {
-                    secretNumber = padNumbers.get(indexOfKeyNumber - 2);
-                } else secretNumber = padNumbers.get(indexOfKeyNumber + 1);
+                indexOfSecretNumber = moveIndexRight(indexOfKeyNumber);
+                secretNumber = padNumbers.get(indexOfSecretNumber);
                 break;
             case MIDDLE_LEFT_INDEX:
-                if (indexOfKeyNumber == TOP_LEFT_INDEX || indexOfKeyNumber == MIDDLE_LEFT_INDEX || indexOfKeyNumber == BOTTOM_LEFT_INDEX) {
-                    secretNumber = padNumbers.get(indexOfKeyNumber + 2);
-                } else secretNumber = padNumbers.get(indexOfKeyNumber - 1);
+                indexOfSecretNumber = moveIndexLeft(indexOfKeyNumber);
+                secretNumber = padNumbers.get(indexOfSecretNumber);
                 break;
         }
 
         return secretNumber;
 
+    }
+
+    private int moveIndexLeft(int indexOfKeyNumber) {
+        int indexOfSecretNumber;
+        if (indexOfKeyNumber == TOP_LEFT_INDEX || indexOfKeyNumber == MIDDLE_LEFT_INDEX || indexOfKeyNumber == BOTTOM_LEFT_INDEX) {
+            indexOfSecretNumber = indexOfKeyNumber + 2;
+        } else indexOfSecretNumber = indexOfKeyNumber - 1;
+        return indexOfSecretNumber;
+    }
+
+    private int moveIndexRight(int indexOfKeyNumber) {
+        int indexOfSecretNumber;
+        if (indexOfKeyNumber == TOP_RIGHT_INDEX || indexOfKeyNumber == MIDDLE_RIGHT_INDEX || indexOfKeyNumber == BOTTOM_RIGHT_INDEX) {
+            indexOfSecretNumber = indexOfKeyNumber - 2;
+        } else indexOfSecretNumber = indexOfKeyNumber + 1;
+        return indexOfSecretNumber;
     }
 
     private int moveIndexDown(int indexOfKeyNumber) {
