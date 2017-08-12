@@ -33,7 +33,13 @@ public class PinPad {
 
     public int returnSecretNumber() {
 
-        int secretNumber = 1;
+        int secretNumber = -99;
+
+        if (padNumbers.indexOf(getDirectionNumber()) == TOP_CENTER_INDEX) {
+            int indexOfKeyNumber = padNumbers.indexOf(getKeyNumber());
+            int indexOfSecretNumber = Math.floorMod(indexOfKeyNumber - 3, 9);
+            secretNumber = padNumbers.get(indexOfSecretNumber);
+        }
 
         return secretNumber;
 
@@ -72,7 +78,7 @@ public class PinPad {
         padNumbers.set(8, bottomRight);
     }
 
-    public int returnNumber(int positionOfNumberToReturn){
+    public int returnNumber(int positionOfNumberToReturn) {
         return padNumbers.indexOf(positionOfNumberToReturn);
     }
 
