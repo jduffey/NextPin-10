@@ -20,5 +20,12 @@ public class PinUserTests {
         assertNotNull(pinUser);
     }
 
+    @Test
+    public void thePinUserShouldBeAbleToSetAndGetAKeyNumber() {
+        pinUser.setKeyNumber(2);
+        pinUser.setDirectionNumber(4);
+        assertEquals(2, pinUser.getKeyNumber());
+        assertEquals(4, pinUser.getDirectionNumber());
+    }
 
 }
