@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 /**
  * Created by jedduffey on 8/9/17.
  */
-public class Tests {
+public class PinPadTests {
 
     private PinPad pinPad;
 
