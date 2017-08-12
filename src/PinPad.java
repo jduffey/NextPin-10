@@ -37,21 +37,23 @@ public class PinPad {
 
         int secretNumber = -99;
 
-        if (padNumbers.indexOf(getDirectionNumber()) == TOP_CENTER_INDEX) {
-            int indexOfKeyNumber = padNumbers.indexOf(getKeyNumber());
-            int indexOfSecretNumber = Math.floorMod(indexOfKeyNumber + PAD_DIRECTION_UP_ONE_ROW, padNumbers.size());
-            secretNumber = padNumbers.get(indexOfSecretNumber);
-        }
+        int indexOfDirectionNumber = padNumbers.indexOf(getDirectionNumber());
+        int indexOfKeyNumber = padNumbers.indexOf(getKeyNumber());
+        int indexOfSecretNumber;
 
-        if (padNumbers.indexOf(getDirectionNumber()) == BOTTOM_CENTER_INDEX) {
-            int indexOfKeyNumber = padNumbers.indexOf(getKeyNumber());
-            int indexOfSecretNumber = Math.floorMod(indexOfKeyNumber + PAD_DIRECTION_DOWN_ONE_ROW, padNumbers.size());
-            secretNumber = padNumbers.get(indexOfSecretNumber);
-        }
-
-        if (padNumbers.indexOf(getDirectionNumber()) == MIDDLE_CENTER_INDEX) {
-            // No fancy math here :-)
-            secretNumber = getKeyNumber();
+        switch (indexOfDirectionNumber) {
+            case TOP_CENTER_INDEX: //indexOfKeyNumber = padNumbers.indexOf(getKeyNumber());
+                indexOfSecretNumber = Math.floorMod(indexOfKeyNumber + PAD_DIRECTION_UP_ONE_ROW, padNumbers.size());
+                secretNumber = padNumbers.get(indexOfSecretNumber);
+                break;
+            case BOTTOM_CENTER_INDEX:
+                //indexOfKeyNumber = padNumbers.indexOf(getKeyNumber());
+                indexOfSecretNumber = Math.floorMod(indexOfKeyNumber + PAD_DIRECTION_DOWN_ONE_ROW, padNumbers.size());
+                secretNumber = padNumbers.get(indexOfSecretNumber);
+                break;
+            case MIDDLE_CENTER_INDEX:
+                secretNumber = getKeyNumber();
+                break;
         }
 
         return secretNumber;
