@@ -61,6 +61,10 @@ public class PinPad {
                 indexOfSecretNumber = moveIndexLeft(indexOfKeyNumber);
                 secretNumber = padNumbers.get(indexOfSecretNumber);
                 break;
+            case TOP_LEFT_INDEX:
+                int indexOfInterimKeyNumber = moveIndexUp(indexOfKeyNumber);
+                indexOfSecretNumber = moveIndexLeft(indexOfInterimKeyNumber);
+                secretNumber = padNumbers.get(indexOfSecretNumber);
         }
 
         return secretNumber;
