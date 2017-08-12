@@ -167,7 +167,7 @@ public class Tests {
     @Test
     public void ifDirectionNumberIsRightCenterThenSecretNumberIsToTheRightOfTheKeyNumber() {
 
-        /*This is achieved by adding one to the index of the key number and taking the modulo of the array size,
+        /*This is achieved by adding one to the index of the key number,
         except in the case of the key number being in the right-hand column where we must subtract two from the index of the key number.
         In all cases the direction number is in the middleRight position.*/
 
@@ -191,7 +191,7 @@ public class Tests {
     @Test
     public void ifDirectionNumberIsLeftCenterThenSecretNumberIsToTheLeftOfTheKeyNumber() {
 
-        /*This is achieved by subtracting one from the index of the key number and taking the modulo of the array size,
+        /*This is achieved by subtracting one from the index of the key number,
         except in the case of the key number being in the left-hand column where we must add two from the index of the key number.
         In all cases the direction number is in the middleLeft position.*/
 
