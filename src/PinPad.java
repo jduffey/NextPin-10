@@ -53,6 +53,11 @@ public class PinPad {
             case MIDDLE_CENTER_INDEX:
                 secretNumber = getKeyNumber();
                 break;
+            case MIDDLE_RIGHT_INDEX:
+                if (indexOfKeyNumber == TOP_RIGHT_INDEX || indexOfKeyNumber == MIDDLE_RIGHT_INDEX || indexOfKeyNumber == BOTTOM_RIGHT_INDEX) {
+                    secretNumber = padNumbers.get(indexOfKeyNumber - 2);
+                } else secretNumber = padNumbers.get(indexOfKeyNumber + 1);
+                break;
         }
 
         return secretNumber;

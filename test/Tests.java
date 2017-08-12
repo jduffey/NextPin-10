@@ -164,4 +164,28 @@ public class Tests {
 
     }
 
+    @Test
+    public void ifDirectionNumberIsRightCenterThenSecretNumberIsToTheRightOfTheKeyNumber() {
+
+        /*This is achieved by adding one to the index of the key number and taking the modulo of the array size,
+        except in the case of the key number being in the right-hand column where we must subtract two from the index of the key number.
+        In all cases the direction number is in the middleRight position.*/
+
+        pinPad.setKeyNumber(1);
+        pinPad.setDirectionNumber(5);
+
+        // The key number is in the left column (top left). 
+        pinPad.setNumbers(1, 8, 6, 3, 0, 5, 2, 7, 4);
+        assertEquals(8, pinPad.returnSecretNumber());
+
+        // The key number is in the middle column (middle center).
+        pinPad.setNumbers(3, 2, 6, 7, 1, 5, 8, 0, 4);
+        assertEquals(5, pinPad.returnSecretNumber());
+
+        // The key number is in the right column (bottom right).
+        pinPad.setNumbers(0, 3, 8, 4, 7, 5, 6, 2, 1);
+        assertEquals(6, pinPad.returnSecretNumber());
+
+    }
+
 }
