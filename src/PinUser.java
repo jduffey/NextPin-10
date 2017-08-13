@@ -5,6 +5,7 @@ public class PinUser {
 
     private int keyNumber;
     private int directionNumber;
+    private String userName;
 
     public void setKeyNumber(int keyNumber) {
         this.keyNumber = keyNumber;
@@ -20,5 +21,13 @@ public class PinUser {
 
     public int getDirectionNumber() {
         return directionNumber;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getUserName() {
+        return userName;
     }
 }

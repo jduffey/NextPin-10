@@ -28,4 +28,10 @@ public class PinUserTests {
         assertEquals(4, pinUser.getDirectionNumber());
     }
 
+    @Test
+    public void thePinUserShouldBeAbleToSetAndGetHerName(){
+        pinUser.setUserName("MyName");
+        assertEquals("MyName", pinUser.getUserName());
+    }
+
 }
