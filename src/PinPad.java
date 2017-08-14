@@ -6,7 +6,8 @@ import java.util.Collections;
  */
 public class PinPad {
 
-    public static final int HOW_MANY_NUMBERS_ON_THE_PINPAD = 9;
+    public static final int PINPAD_SQUARE_SIZE = 3;
+
     public static final int TOP_LEFT_INDEX = 0;
     public static final int TOP_CENTER_INDEX = 1;
     public static final int TOP_RIGHT_INDEX = 2;
@@ -16,8 +17,7 @@ public class PinPad {
     public static final int BOTTOM_LEFT_INDEX = 6;
     public static final int BOTTOM_CENTER_INDEX = 7;
     public static final int BOTTOM_RIGHT_INDEX = 8;
-    public static final int PAD_DIRECTION_UP_ONE_ROW = -3;
-    public static final int PAD_DIRECTION_DOWN_ONE_ROW = 3;
+
     private int keyNumber;
     private int directionNumber;
 
@@ -28,7 +28,7 @@ public class PinPad {
         padNumbers = new ArrayList<Integer>();
 
         for (int i = 0; i <
-                HOW_MANY_NUMBERS_ON_THE_PINPAD; i++) {
+                (PINPAD_SQUARE_SIZE * PINPAD_SQUARE_SIZE); i++) {
             padNumbers.add(i);
         }
     }
@@ -36,31 +36,31 @@ public class PinPad {
     public int returnSecretNumber() {
 
         int indexOfDirectionNumber = padNumbers.indexOf(getDirectionNumber());
-        int indexOfInterimKeyNumber = padNumbers.indexOf(getKeyNumber());
+        int indexOfInterimSecretNumber = padNumbers.indexOf(getKeyNumber());
 
-        boolean directionNumberIsInTopRow = indexOfDirectionNumber >= 0 && indexOfDirectionNumber <= 2;
-        boolean directionNumberIsInBottomRow = indexOfDirectionNumber >= 6 && indexOfDirectionNumber <= 8;
-        boolean directionNumberIsInLeftColumn = indexOfDirectionNumber == 0 || indexOfDirectionNumber == 3 || indexOfDirectionNumber == 6;
-        boolean directionNumberIsInRightColumn = indexOfDirectionNumber == 2 || indexOfDirectionNumber == 5 || indexOfDirectionNumber == 8;
+        boolean directionNumberIsInTopRow = indexOfDirectionNumber >= TOP_LEFT_INDEX && indexOfDirectionNumber <= TOP_RIGHT_INDEX;
+        boolean directionNumberIsInBottomRow = indexOfDirectionNumber >= BOTTOM_LEFT_INDEX && indexOfDirectionNumber <= BOTTOM_RIGHT_INDEX;
+        boolean directionNumberIsInLeftColumn = indexOfDirectionNumber % PINPAD_SQUARE_SIZE == 0;
+        boolean directionNumberIsInRightColumn = (indexOfDirectionNumber - 2) % PINPAD_SQUARE_SIZE == 0;
 
-        if(directionNumberIsInTopRow){
-            indexOfInterimKeyNumber = Math.floorMod(indexOfInterimKeyNumber + PAD_DIRECTION_UP_ONE_ROW, padNumbers.size());
+        if (directionNumberIsInTopRow) {
+            indexOfInterimSecretNumber = Math.floorMod(indexOfInterimSecretNumber - PINPAD_SQUARE_SIZE, padNumbers.size());
         }
-        if(directionNumberIsInBottomRow){
-            indexOfInterimKeyNumber = Math.floorMod(indexOfInterimKeyNumber + PAD_DIRECTION_DOWN_ONE_ROW, padNumbers.size());
+        if (directionNumberIsInBottomRow) {
+            indexOfInterimSecretNumber = Math.floorMod(indexOfInterimSecretNumber + PINPAD_SQUARE_SIZE, padNumbers.size());
         }
-        if(directionNumberIsInLeftColumn){
-            if (indexOfInterimKeyNumber == TOP_LEFT_INDEX || indexOfInterimKeyNumber == MIDDLE_LEFT_INDEX || indexOfInterimKeyNumber == BOTTOM_LEFT_INDEX) {
-                indexOfInterimKeyNumber = indexOfInterimKeyNumber + 2;
-            } else indexOfInterimKeyNumber = indexOfInterimKeyNumber - 1;;
+        if (directionNumberIsInLeftColumn) {
+            if (indexOfInterimSecretNumber == TOP_LEFT_INDEX || indexOfInterimSecretNumber == MIDDLE_LEFT_INDEX || indexOfInterimSecretNumber == BOTTOM_LEFT_INDEX) {
+                indexOfInterimSecretNumber = indexOfInterimSecretNumber + 2;
+            } else indexOfInterimSecretNumber = indexOfInterimSecretNumber - 1;
         }
-        if(directionNumberIsInRightColumn){
-            if (indexOfInterimKeyNumber == TOP_RIGHT_INDEX || indexOfInterimKeyNumber == MIDDLE_RIGHT_INDEX || indexOfInterimKeyNumber == BOTTOM_RIGHT_INDEX) {
-                indexOfInterimKeyNumber = indexOfInterimKeyNumber - 2;
-            } else indexOfInterimKeyNumber = indexOfInterimKeyNumber + 1;
+        if (directionNumberIsInRightColumn) {
+            if (indexOfInterimSecretNumber == TOP_RIGHT_INDEX || indexOfInterimSecretNumber == MIDDLE_RIGHT_INDEX || indexOfInterimSecretNumber == BOTTOM_RIGHT_INDEX) {
+                indexOfInterimSecretNumber = indexOfInterimSecretNumber - 2;
+            } else indexOfInterimSecretNumber = indexOfInterimSecretNumber + 1;
         }
 
-        return padNumbers.get(indexOfInterimKeyNumber);
+        return padNumbers.get(indexOfInterimSecretNumber);
 
     }
 
@@ -80,6 +80,7 @@ public class PinPad {
         this.directionNumber = directionNumber;
     }
 
+    // Created a method for this in case I want to change later how the shuffling/randomizing is implemented.
     public void shuffle() {
         Collections.shuffle(padNumbers);
     }
