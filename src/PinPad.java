@@ -41,7 +41,7 @@ public class PinPad {
         boolean directionNumberIsInTopRow = indexOfDirectionNumber >= TOP_LEFT_INDEX && indexOfDirectionNumber <= TOP_RIGHT_INDEX;
         boolean directionNumberIsInBottomRow = indexOfDirectionNumber >= BOTTOM_LEFT_INDEX && indexOfDirectionNumber <= BOTTOM_RIGHT_INDEX;
         boolean directionNumberIsInLeftColumn = indexOfDirectionNumber % PINPAD_SQUARE_SIZE == 0;
-        boolean directionNumberIsInRightColumn = (indexOfDirectionNumber - 2) % PINPAD_SQUARE_SIZE == 0;
+        boolean directionNumberIsInRightColumn = (indexOfDirectionNumber - (PINPAD_SQUARE_SIZE - 1)) % PINPAD_SQUARE_SIZE == 0;
 
         if (directionNumberIsInTopRow) {
             indexOfInterimSecretNumber = Math.floorMod(indexOfInterimSecretNumber - PINPAD_SQUARE_SIZE, padNumbers.size());
