@@ -35,56 +35,28 @@ public class PinPad {
 
     public int returnSecretNumber() {
 
-        int secretNumber = -99;
-
         int indexOfDirectionNumber = padNumbers.indexOf(getDirectionNumber());
-        int indexOfKeyNumber = padNumbers.indexOf(getKeyNumber());
-        int indexOfSecretNumber;
-        int indexOfInterimKeyNumber;
+        int indexOfInterimKeyNumber = padNumbers.indexOf(getKeyNumber());
 
-        switch (indexOfDirectionNumber) {
-            case TOP_CENTER_INDEX:
-                indexOfSecretNumber = moveIndexUp(indexOfKeyNumber);
-                secretNumber = padNumbers.get(indexOfSecretNumber);
-                break;
-            case BOTTOM_CENTER_INDEX:
-                indexOfSecretNumber = moveIndexDown(indexOfKeyNumber);
-                secretNumber = padNumbers.get(indexOfSecretNumber);
-                break;
-            case MIDDLE_CENTER_INDEX:
-                secretNumber = getKeyNumber();
-                break;
-            case MIDDLE_RIGHT_INDEX:
-                indexOfSecretNumber = moveIndexRight(indexOfKeyNumber);
-                secretNumber = padNumbers.get(indexOfSecretNumber);
-                break;
-            case MIDDLE_LEFT_INDEX:
-                indexOfSecretNumber = moveIndexLeft(indexOfKeyNumber);
-                secretNumber = padNumbers.get(indexOfSecretNumber);
-                break;
-            case TOP_LEFT_INDEX:
-                indexOfInterimKeyNumber = moveIndexUp(indexOfKeyNumber);
-                indexOfSecretNumber = moveIndexLeft(indexOfInterimKeyNumber);
-                secretNumber = padNumbers.get(indexOfSecretNumber);
-                break;
-            case TOP_RIGHT_INDEX:
-                indexOfInterimKeyNumber = moveIndexUp(indexOfKeyNumber);
-                indexOfSecretNumber = moveIndexRight(indexOfInterimKeyNumber);
-                secretNumber = padNumbers.get(indexOfSecretNumber);
-                break;
-            case BOTTOM_LEFT_INDEX:
-                indexOfInterimKeyNumber = moveIndexDown(indexOfKeyNumber);
-                indexOfSecretNumber = moveIndexLeft(indexOfInterimKeyNumber);
-                secretNumber = padNumbers.get(indexOfSecretNumber);
-                break;
-            case BOTTOM_RIGHT_INDEX:
-                indexOfInterimKeyNumber = moveIndexDown(indexOfKeyNumber);
-                indexOfSecretNumber = moveIndexRight(indexOfInterimKeyNumber);
-                secretNumber = padNumbers.get(indexOfSecretNumber);
-                break;
+        boolean isInTopRow = indexOfDirectionNumber >= 0 && indexOfDirectionNumber <= 2;
+        boolean isInBottomRow = indexOfDirectionNumber >= 6 && indexOfDirectionNumber <= 8;
+        boolean isInLeftColumn = indexOfDirectionNumber == 0 || indexOfDirectionNumber == 3 || indexOfDirectionNumber == 6;
+        boolean isInRightColumn = indexOfDirectionNumber == 2 || indexOfDirectionNumber == 5 || indexOfDirectionNumber == 8;
+
+        if(isInTopRow){
+            indexOfInterimKeyNumber = moveIndexUp(indexOfInterimKeyNumber);
+        }
+        if(isInBottomRow){
+            indexOfInterimKeyNumber = moveIndexDown(indexOfInterimKeyNumber);
+        }
+        if(isInLeftColumn){
+            indexOfInterimKeyNumber = moveIndexLeft(indexOfInterimKeyNumber);
+        }
+        if(isInRightColumn){
+            indexOfInterimKeyNumber = moveIndexRight(indexOfInterimKeyNumber);
         }
 
-        return secretNumber;
+        return padNumbers.get(indexOfInterimKeyNumber);
 
     }
 
