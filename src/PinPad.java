@@ -38,54 +38,30 @@ public class PinPad {
         int indexOfDirectionNumber = padNumbers.indexOf(getDirectionNumber());
         int indexOfInterimKeyNumber = padNumbers.indexOf(getKeyNumber());
 
-        boolean isInTopRow = indexOfDirectionNumber >= 0 && indexOfDirectionNumber <= 2;
-        boolean isInBottomRow = indexOfDirectionNumber >= 6 && indexOfDirectionNumber <= 8;
-        boolean isInLeftColumn = indexOfDirectionNumber == 0 || indexOfDirectionNumber == 3 || indexOfDirectionNumber == 6;
-        boolean isInRightColumn = indexOfDirectionNumber == 2 || indexOfDirectionNumber == 5 || indexOfDirectionNumber == 8;
+        boolean directionNumberIsInTopRow = indexOfDirectionNumber >= 0 && indexOfDirectionNumber <= 2;
+        boolean directionNumberIsInBottomRow = indexOfDirectionNumber >= 6 && indexOfDirectionNumber <= 8;
+        boolean directionNumberIsInLeftColumn = indexOfDirectionNumber == 0 || indexOfDirectionNumber == 3 || indexOfDirectionNumber == 6;
+        boolean directionNumberIsInRightColumn = indexOfDirectionNumber == 2 || indexOfDirectionNumber == 5 || indexOfDirectionNumber == 8;
 
-        if(isInTopRow){
-            indexOfInterimKeyNumber = moveIndexUp(indexOfInterimKeyNumber);
+        if(directionNumberIsInTopRow){
+            indexOfInterimKeyNumber = Math.floorMod(indexOfInterimKeyNumber + PAD_DIRECTION_UP_ONE_ROW, padNumbers.size());
         }
-        if(isInBottomRow){
-            indexOfInterimKeyNumber = moveIndexDown(indexOfInterimKeyNumber);
+        if(directionNumberIsInBottomRow){
+            indexOfInterimKeyNumber = Math.floorMod(indexOfInterimKeyNumber + PAD_DIRECTION_DOWN_ONE_ROW, padNumbers.size());
         }
-        if(isInLeftColumn){
-            indexOfInterimKeyNumber = moveIndexLeft(indexOfInterimKeyNumber);
+        if(directionNumberIsInLeftColumn){
+            if (indexOfInterimKeyNumber == TOP_LEFT_INDEX || indexOfInterimKeyNumber == MIDDLE_LEFT_INDEX || indexOfInterimKeyNumber == BOTTOM_LEFT_INDEX) {
+                indexOfInterimKeyNumber = indexOfInterimKeyNumber + 2;
+            } else indexOfInterimKeyNumber = indexOfInterimKeyNumber - 1;;
         }
-        if(isInRightColumn){
-            indexOfInterimKeyNumber = moveIndexRight(indexOfInterimKeyNumber);
+        if(directionNumberIsInRightColumn){
+            if (indexOfInterimKeyNumber == TOP_RIGHT_INDEX || indexOfInterimKeyNumber == MIDDLE_RIGHT_INDEX || indexOfInterimKeyNumber == BOTTOM_RIGHT_INDEX) {
+                indexOfInterimKeyNumber = indexOfInterimKeyNumber - 2;
+            } else indexOfInterimKeyNumber = indexOfInterimKeyNumber + 1;
         }
 
         return padNumbers.get(indexOfInterimKeyNumber);
 
-    }
-
-    private int moveIndexLeft(int indexOfKeyNumber) {
-        int indexOfSecretNumber;
-        if (indexOfKeyNumber == TOP_LEFT_INDEX || indexOfKeyNumber == MIDDLE_LEFT_INDEX || indexOfKeyNumber == BOTTOM_LEFT_INDEX) {
-            indexOfSecretNumber = indexOfKeyNumber + 2;
-        } else indexOfSecretNumber = indexOfKeyNumber - 1;
-        return indexOfSecretNumber;
-    }
-
-    private int moveIndexRight(int indexOfKeyNumber) {
-        int indexOfSecretNumber;
-        if (indexOfKeyNumber == TOP_RIGHT_INDEX || indexOfKeyNumber == MIDDLE_RIGHT_INDEX || indexOfKeyNumber == BOTTOM_RIGHT_INDEX) {
-            indexOfSecretNumber = indexOfKeyNumber - 2;
-        } else indexOfSecretNumber = indexOfKeyNumber + 1;
-        return indexOfSecretNumber;
-    }
-
-    private int moveIndexDown(int indexOfKeyNumber) {
-        int indexOfSecretNumber;
-        indexOfSecretNumber = Math.floorMod(indexOfKeyNumber + PAD_DIRECTION_DOWN_ONE_ROW, padNumbers.size());
-        return indexOfSecretNumber;
-    }
-
-    private int moveIndexUp(int indexOfKeyNumber) {
-        int indexOfSecretNumber;
-        indexOfSecretNumber = Math.floorMod(indexOfKeyNumber + PAD_DIRECTION_UP_ONE_ROW, padNumbers.size());
-        return indexOfSecretNumber;
     }
 
     public int getKeyNumber() {
