@@ -50,18 +50,26 @@ public class PinPad {
             indexOfInterimSecretNumber = Math.floorMod(indexOfInterimSecretNumber + PINPAD_SQUARE_SIZE, padNumbers.size());
         }
         if (directionNumberIsInLeftColumn) {
-            if (indexOfInterimSecretNumber == TOP_LEFT_INDEX || indexOfInterimSecretNumber == MIDDLE_LEFT_INDEX || indexOfInterimSecretNumber == BOTTOM_LEFT_INDEX) {
-                indexOfInterimSecretNumber = indexOfInterimSecretNumber + 2;
+            if (isInterimSecretNumberInLeftColumn(indexOfInterimSecretNumber)) {
+                indexOfInterimSecretNumber = indexOfInterimSecretNumber + (PINPAD_SQUARE_SIZE - 1);
             } else indexOfInterimSecretNumber = indexOfInterimSecretNumber - 1;
         }
         if (directionNumberIsInRightColumn) {
-            if (indexOfInterimSecretNumber == TOP_RIGHT_INDEX || indexOfInterimSecretNumber == MIDDLE_RIGHT_INDEX || indexOfInterimSecretNumber == BOTTOM_RIGHT_INDEX) {
-                indexOfInterimSecretNumber = indexOfInterimSecretNumber - 2;
+            if (isInterimSecretNumberInRightColumbu(indexOfInterimSecretNumber)) {
+                indexOfInterimSecretNumber = indexOfInterimSecretNumber - (PINPAD_SQUARE_SIZE - 1);
             } else indexOfInterimSecretNumber = indexOfInterimSecretNumber + 1;
         }
 
         return padNumbers.get(indexOfInterimSecretNumber);
 
+    }
+
+    private boolean isInterimSecretNumberInLeftColumn(int indexOfInterimSecretNumber) {
+        return indexOfInterimSecretNumber % PINPAD_SQUARE_SIZE == 0;
+    }
+
+    private boolean isInterimSecretNumberInRightColumbu(int indexOfInterimSecretNumber) {
+        return (indexOfInterimSecretNumber - 2) % PINPAD_SQUARE_SIZE == 0;
     }
 
     public int getKeyNumber() {
