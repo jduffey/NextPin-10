@@ -8,16 +8,6 @@ public class PinPad {
 
     public static final int PINPAD_SQUARE_SIZE = 3;
 
-    public static final int TOP_LEFT_INDEX = 0;
-    public static final int TOP_CENTER_INDEX = 1;
-    public static final int TOP_RIGHT_INDEX = 2;
-    public static final int MIDDLE_LEFT_INDEX = 3;
-    public static final int MIDDLE_CENTER_INDEX = 4;
-    public static final int MIDDLE_RIGHT_INDEX = 5;
-    public static final int BOTTOM_LEFT_INDEX = 6;
-    public static final int BOTTOM_CENTER_INDEX = 7;
-    public static final int BOTTOM_RIGHT_INDEX = 8;
-
     private int keyNumber;
     private int directionNumber;
 
@@ -38,8 +28,8 @@ public class PinPad {
         int indexOfDirectionNumber = padNumbers.indexOf(getDirectionNumber());
         int indexOfInterimSecretNumber = padNumbers.indexOf(getKeyNumber());
 
-        boolean directionNumberIsInTopRow = indexOfDirectionNumber >= TOP_LEFT_INDEX && indexOfDirectionNumber <= TOP_RIGHT_INDEX;
-        boolean directionNumberIsInBottomRow = indexOfDirectionNumber >= BOTTOM_LEFT_INDEX && indexOfDirectionNumber <= BOTTOM_RIGHT_INDEX;
+        boolean directionNumberIsInTopRow = indexOfDirectionNumber >= 0 && indexOfDirectionNumber <= PINPAD_SQUARE_SIZE - 1;
+        boolean directionNumberIsInBottomRow = indexOfDirectionNumber >= PINPAD_SQUARE_SIZE * (PINPAD_SQUARE_SIZE - 1) && indexOfDirectionNumber <= padNumbers.size();
         boolean directionNumberIsInLeftColumn = indexOfDirectionNumber % PINPAD_SQUARE_SIZE == 0;
         boolean directionNumberIsInRightColumn = (indexOfDirectionNumber - (PINPAD_SQUARE_SIZE - 1)) % PINPAD_SQUARE_SIZE == 0;
 
