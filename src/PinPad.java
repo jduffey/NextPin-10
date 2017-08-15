@@ -120,10 +120,7 @@ public class PinPad {
 
     public int returnHorizontalDisplacement() {
 
-        int indexOfDirectionNumber = padNumbers.indexOf(directionNumber);
-        int horizontalDisplacement = indexOfDirectionNumber % squareSize - squareSize / 2; // Java int division rules help here.
-
-        return horizontalDisplacement;
+        return padNumbers.indexOf(directionNumber) % squareSize - squareSize / 2; // Java int division rules help here.
 
     }
 
