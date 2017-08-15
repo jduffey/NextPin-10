@@ -36,24 +36,44 @@ public class PinPad {
         boolean directionNumberIsInRightColumn = (indexOfDirectionNumber - (squareSize - 1)) % squareSize == 0;
 
         if (directionNumberIsInTopRow) {
-            indexOfInterimSecretNumber = Math.floorMod(indexOfInterimSecretNumber - squareSize, padNumbers.size());
+            indexOfInterimSecretNumber = moveUp(indexOfInterimSecretNumber);
         }
         if (directionNumberIsInBottomRow) {
-            indexOfInterimSecretNumber = Math.floorMod(indexOfInterimSecretNumber + squareSize, padNumbers.size());
+            indexOfInterimSecretNumber = moveDown(indexOfInterimSecretNumber);
         }
         if (directionNumberIsInLeftColumn) {
-            if (isInterimSecretNumberInLeftColumn(indexOfInterimSecretNumber)) {
-                indexOfInterimSecretNumber = indexOfInterimSecretNumber + (squareSize - 1);
-            } else indexOfInterimSecretNumber = indexOfInterimSecretNumber - 1;
+            indexOfInterimSecretNumber = moveLeft(indexOfInterimSecretNumber);
         }
         if (directionNumberIsInRightColumn) {
-            if (isInterimSecretNumberInRightColumn(indexOfInterimSecretNumber)) {
-                indexOfInterimSecretNumber = indexOfInterimSecretNumber - (squareSize - 1);
-            } else indexOfInterimSecretNumber = indexOfInterimSecretNumber + 1;
+            indexOfInterimSecretNumber = moveRight(indexOfInterimSecretNumber);
         }
 
         return padNumbers.get(indexOfInterimSecretNumber);
 
+    }
+
+    private int moveRight(int indexOfInterimSecretNumber) {
+        if (isInterimSecretNumberInRightColumn(indexOfInterimSecretNumber)) {
+            indexOfInterimSecretNumber = indexOfInterimSecretNumber - (squareSize - 1);
+        } else indexOfInterimSecretNumber = indexOfInterimSecretNumber + 1;
+        return indexOfInterimSecretNumber;
+    }
+
+    private int moveLeft(int indexOfInterimSecretNumber) {
+        if (isInterimSecretNumberInLeftColumn(indexOfInterimSecretNumber)) {
+            indexOfInterimSecretNumber = indexOfInterimSecretNumber + (squareSize - 1);
+        } else indexOfInterimSecretNumber = indexOfInterimSecretNumber - 1;
+        return indexOfInterimSecretNumber;
+    }
+
+    private int moveDown(int indexOfInterimSecretNumber) {
+        indexOfInterimSecretNumber = Math.floorMod(indexOfInterimSecretNumber + squareSize, padNumbers.size());
+        return indexOfInterimSecretNumber;
+    }
+
+    private int moveUp(int indexOfInterimSecretNumber) {
+        indexOfInterimSecretNumber = Math.floorMod(indexOfInterimSecretNumber - squareSize, padNumbers.size());
+        return indexOfInterimSecretNumber;
     }
 
     private boolean isInterimSecretNumberInLeftColumn(int indexOfInterimSecretNumber) {
