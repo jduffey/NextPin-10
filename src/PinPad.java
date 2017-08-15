@@ -27,36 +27,24 @@ public class PinPad {
 
     public int returnSecretNumber() {
 
-        int indexOfDirectionNumber = padNumbers.indexOf(getDirectionNumber());
-        int indexOfInterimSecretNumber = padNumbers.indexOf(getKeyNumber());
-
-        boolean directionNumberIsInLeftColumn = indexOfDirectionNumber % squareSize == 0;
-        boolean directionNumberIsInRightColumn = (indexOfDirectionNumber - (squareSize - 1)) % squareSize == 0;
-
-        indexOfInterimSecretNumber = moveVertical(indexOfInterimSecretNumber);
-
-        if (directionNumberIsInLeftColumn) {
-            indexOfInterimSecretNumber = moveLeft(indexOfInterimSecretNumber);
-        }
-        if (directionNumberIsInRightColumn) {
-            indexOfInterimSecretNumber = moveRight(indexOfInterimSecretNumber);
-        }
+        int indexOfInterimSecretNumber = moveVertical(padNumbers.indexOf(getKeyNumber()));
+        indexOfInterimSecretNumber = moveHorizontal(indexOfInterimSecretNumber);
 
         return padNumbers.get(indexOfInterimSecretNumber);
 
     }
 
-    private int moveRight(int indexOfInterimSecretNumber) {
-        if (isInterimSecretNumberInRightColumn(indexOfInterimSecretNumber)) {
-            indexOfInterimSecretNumber = indexOfInterimSecretNumber - (squareSize - 1);
-        } else indexOfInterimSecretNumber = indexOfInterimSecretNumber + 1;
-        return indexOfInterimSecretNumber;
-    }
-
-    private int moveLeft(int indexOfInterimSecretNumber) {
-        if (isInterimSecretNumberInLeftColumn(indexOfInterimSecretNumber)) {
-            indexOfInterimSecretNumber = indexOfInterimSecretNumber + (squareSize - 1);
-        } else indexOfInterimSecretNumber = indexOfInterimSecretNumber - 1;
+    private int moveHorizontal(int indexOfInterimSecretNumber) {
+        if (returnHorizontalDisplacement() < 0) {
+            if (isInterimSecretNumberInLeftColumn(indexOfInterimSecretNumber)) {
+                indexOfInterimSecretNumber = indexOfInterimSecretNumber + (squareSize - 1);
+            } else indexOfInterimSecretNumber = indexOfInterimSecretNumber - 1;
+        }
+        if (returnHorizontalDisplacement() > 0) {
+            if (isInterimSecretNumberInRightColumn(indexOfInterimSecretNumber)) {
+                indexOfInterimSecretNumber = indexOfInterimSecretNumber - (squareSize - 1);
+            } else indexOfInterimSecretNumber = indexOfInterimSecretNumber + 1;
+        }
         return indexOfInterimSecretNumber;
     }
 
