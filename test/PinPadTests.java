@@ -375,4 +375,22 @@ public class PinPadTests {
         assertEquals(-1, pinPad.returnVerticalDisplacement());
     }
 
+    @Test
+    public void testForRefactoringHorizontalMovementCode(){
+        pinPad.setKeyNumber(1);
+        pinPad.setDirectionNumber(5);
+
+        // Direction number in left column.
+        pinPad.setNumbers(5, 1, 4, 8, 2, 3, 6, 7, 0);
+        assertEquals(6, pinPad.returnSecretNumber());
+
+        // Direction number in middle column.
+        pinPad.setNumbers(8, 1, 6, 4, 7, 5, 3, 0, 2);
+        assertEquals(6, pinPad.returnSecretNumber());
+
+        // Direction number is in right column.
+        pinPad.setNumbers(3, 4, 1, 6, 7, 0, 8, 2, 5);
+        assertEquals(6, pinPad.returnSecretNumber());
+    }
+
 }
