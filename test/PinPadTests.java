@@ -320,7 +320,7 @@ public class PinPadTests {
     }
 
     @Test
-    public void constructorShouldTakeArgumentOfSquareSize(){
+    public void constructorShouldTakeArgumentOfSquareSizeAndGenerateItsArrayBasedOnThatValue(){
         pinPad = new PinPad(3);
         assertEquals(9, pinPad.padNumbers.size());
     }
