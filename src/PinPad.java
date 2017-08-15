@@ -7,18 +7,21 @@ import java.util.Collections;
 public class PinPad {
 
     public static final int PINPAD_SQUARE_SIZE = 3;
+    private final int squareSize;
 
     private int keyNumber;
     private int directionNumber;
 
     ArrayList<Integer> padNumbers;
 
-    public PinPad() {
+    public PinPad(int squareSize) {
+
+        this.squareSize = squareSize;
 
         padNumbers = new ArrayList<Integer>();
 
         for (int i = 0; i <
-                (PINPAD_SQUARE_SIZE * PINPAD_SQUARE_SIZE); i++) {
+                (squareSize * squareSize); i++) {
             padNumbers.add(i);
         }
     }

@@ -12,7 +12,7 @@ public class PinPadTests {
 
     @Before
     public void setup() {
-        pinPad = new PinPad();
+        pinPad = new PinPad(3);
     }
 
     @Test
@@ -317,6 +317,12 @@ public class PinPadTests {
         pinPad.setNumbers(4,1,0,6,5,2,7,8,3);
         assertEquals(1,pinPad.returnSecretNumber());
 
+    }
+
+    @Test
+    public void constructorShouldTakeArgumentOfSquareSize(){
+        pinPad = new PinPad(3);
+        assertEquals(9, pinPad.padNumbers.size());
     }
 
 }
