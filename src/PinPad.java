@@ -98,8 +98,4 @@ public class PinPad {
         padNumbers.set(8, bottomRight);
     }
 
-    public int returnNumber(int positionOfNumberToReturn) {
-        return padNumbers.indexOf(positionOfNumberToReturn);
-    }
-
 }
