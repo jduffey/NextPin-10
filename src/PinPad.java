@@ -63,12 +63,12 @@ public class PinPad {
 
     private boolean isInterimSecretNumberIsOneLeftOfCenterline(int indexOfInterimSecretNumber) {
         int verticalCenterlineIndexAsAJavaInt = squareSize / 2;
-        return indexOfInterimSecretNumber % 3 == verticalCenterlineIndexAsAJavaInt - 1;
+        return indexOfInterimSecretNumber % squareSize == verticalCenterlineIndexAsAJavaInt - 1;
     }
 
     private boolean isInterimSecretNumberIsOneRightOfCenterline(int indexOfInterimSecretNumber) {
         int verticalCenterlineIndexAsAJavaInt = squareSize / 2;
-        return indexOfInterimSecretNumber % 3 == verticalCenterlineIndexAsAJavaInt + 1;
+        return indexOfInterimSecretNumber % squareSize == verticalCenterlineIndexAsAJavaInt + 1;
     }
 
     public int returnHorizontalDisplacement() {
