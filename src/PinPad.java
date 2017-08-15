@@ -73,12 +73,14 @@ public class PinPad {
 
     public int returnHorizontalDisplacement() {
 
+        // Like an x-y graph, right is positive and left is negative.
         return padNumbers.indexOf(directionNumber) % squareSize - squareSize / 2;
 
     }
 
     public int returnVerticalDisplacement() {
 
+        // Like an x-y graph, up is positive and down is negative.
         return squareSize / 2 - padNumbers.indexOf(directionNumber) / (squareSize);
 
     }
