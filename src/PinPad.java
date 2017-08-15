@@ -84,6 +84,18 @@ public class PinPad {
         return (indexOfInterimSecretNumber - 2) % squareSize == 0;
     }
 
+    public int returnHorizontalDisplacement() {
+
+        return padNumbers.indexOf(directionNumber) % squareSize - squareSize / 2;
+
+    }
+
+    public int returnVerticalDisplacement() {
+
+        return squareSize / 2 - padNumbers.indexOf(directionNumber) / (squareSize);
+
+    }
+
     public int getKeyNumber() {
         return keyNumber;
     }
@@ -116,50 +128,5 @@ public class PinPad {
         padNumbers.set(6, bottomLeft);
         padNumbers.set(7, bottomCenter);
         padNumbers.set(8, bottomRight);
-    }
-
-    public int returnHorizontalDisplacement() {
-
-        return padNumbers.indexOf(directionNumber) % squareSize - squareSize / 2; // Java int division rules help here.
-
-    }
-
-    public int returnVerticalDisplacement() {
-
-        int indexOfDirectionNumber = padNumbers.indexOf(directionNumber);
-        int verticalDisplacement = -99999;
-
-        switch (indexOfDirectionNumber) {
-            case 0:
-                verticalDisplacement = 1;
-                break;
-            case 1:
-                verticalDisplacement = 1;
-                break;
-            case 2:
-                verticalDisplacement = 1;
-                break;
-            case 3:
-                verticalDisplacement = 0;
-                break;
-            case 4:
-                verticalDisplacement = 0;
-                break;
-            case 5:
-                verticalDisplacement = 0;
-                break;
-            case 6:
-                verticalDisplacement = -1;
-                break;
-            case 7:
-                verticalDisplacement = -1;
-                break;
-            case 8:
-                verticalDisplacement = -1;
-                break;
-        }
-
-        return verticalDisplacement;
-
     }
 }
