@@ -45,7 +45,7 @@ public class PinPad {
             } else indexOfInterimSecretNumber = indexOfInterimSecretNumber - 1;
         }
         if (directionNumberIsInRightColumn) {
-            if (isInterimSecretNumberInRightColumbu(indexOfInterimSecretNumber)) {
+            if (isInterimSecretNumberInRightColumn(indexOfInterimSecretNumber)) {
                 indexOfInterimSecretNumber = indexOfInterimSecretNumber - (PINPAD_SQUARE_SIZE - 1);
             } else indexOfInterimSecretNumber = indexOfInterimSecretNumber + 1;
         }
@@ -58,7 +58,7 @@ public class PinPad {
         return indexOfInterimSecretNumber % PINPAD_SQUARE_SIZE == 0;
     }
 
-    private boolean isInterimSecretNumberInRightColumbu(int indexOfInterimSecretNumber) {
+    private boolean isInterimSecretNumberInRightColumn(int indexOfInterimSecretNumber) {
         return (indexOfInterimSecretNumber - 2) % PINPAD_SQUARE_SIZE == 0;
     }
 
