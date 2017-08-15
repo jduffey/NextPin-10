@@ -30,17 +30,11 @@ public class PinPad {
         int indexOfDirectionNumber = padNumbers.indexOf(getDirectionNumber());
         int indexOfInterimSecretNumber = padNumbers.indexOf(getKeyNumber());
 
-        boolean directionNumberIsInTopRow = indexOfDirectionNumber >= 0 && indexOfDirectionNumber <= squareSize - 1;
-        boolean directionNumberIsInBottomRow = indexOfDirectionNumber >= squareSize * (squareSize - 1) && indexOfDirectionNumber <= padNumbers.size();
         boolean directionNumberIsInLeftColumn = indexOfDirectionNumber % squareSize == 0;
         boolean directionNumberIsInRightColumn = (indexOfDirectionNumber - (squareSize - 1)) % squareSize == 0;
 
-        if (directionNumberIsInTopRow) {
-            indexOfInterimSecretNumber = moveUp(indexOfInterimSecretNumber);
-        }
-        if (directionNumberIsInBottomRow) {
-            indexOfInterimSecretNumber = moveDown(indexOfInterimSecretNumber);
-        }
+        indexOfInterimSecretNumber = moveVertical(indexOfInterimSecretNumber);
+
         if (directionNumberIsInLeftColumn) {
             indexOfInterimSecretNumber = moveLeft(indexOfInterimSecretNumber);
         }
@@ -66,13 +60,12 @@ public class PinPad {
         return indexOfInterimSecretNumber;
     }
 
-    private int moveDown(int indexOfInterimSecretNumber) {
-        indexOfInterimSecretNumber = Math.floorMod(indexOfInterimSecretNumber + squareSize, padNumbers.size());
-        return indexOfInterimSecretNumber;
-    }
-
-    private int moveUp(int indexOfInterimSecretNumber) {
-        indexOfInterimSecretNumber = Math.floorMod(indexOfInterimSecretNumber - squareSize, padNumbers.size());
+    private int moveVertical(int indexOfInterimSecretNumber) {
+        if (returnVerticalDisplacement() > 0) {
+            indexOfInterimSecretNumber = Math.floorMod(indexOfInterimSecretNumber - squareSize, padNumbers.size());
+        } else if (returnVerticalDisplacement() < 0) {
+            indexOfInterimSecretNumber = Math.floorMod(indexOfInterimSecretNumber + squareSize, padNumbers.size());
+        }
         return indexOfInterimSecretNumber;
     }
 
