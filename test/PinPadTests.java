@@ -350,4 +350,29 @@ public class PinPadTests {
         assertEquals(1, pinPad.returnHorizontalDisplacement());
     }
 
+    @Test
+    public void shouldHaveMethodForDeterminingVerticalDisplacementOfDirectionNumber() {
+
+        pinPad.setNumbers(0, 1, 2, 3, 4, 5, 6, 7, 8);
+
+        pinPad.setDirectionNumber(0);
+        assertEquals(1, pinPad.returnVerticalDisplacement());
+        pinPad.setDirectionNumber(1);
+        assertEquals(1, pinPad.returnVerticalDisplacement());
+        pinPad.setDirectionNumber(2);
+        assertEquals(1, pinPad.returnVerticalDisplacement());
+        pinPad.setDirectionNumber(3);
+        assertEquals(0, pinPad.returnVerticalDisplacement());
+        pinPad.setDirectionNumber(4);
+        assertEquals(0, pinPad.returnVerticalDisplacement());
+        pinPad.setDirectionNumber(5);
+        assertEquals(0, pinPad.returnVerticalDisplacement());
+        pinPad.setDirectionNumber(6);
+        assertEquals(-1, pinPad.returnVerticalDisplacement());
+        pinPad.setDirectionNumber(7);
+        assertEquals(-1, pinPad.returnVerticalDisplacement());
+        pinPad.setDirectionNumber(8);
+        assertEquals(-1, pinPad.returnVerticalDisplacement());
+    }
+
 }
