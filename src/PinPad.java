@@ -6,7 +6,6 @@ import java.util.Collections;
  */
 public class PinPad {
 
-    public static final int PINPAD_SQUARE_SIZE = 3;
     private final int squareSize;
 
     private int keyNumber;
@@ -31,25 +30,25 @@ public class PinPad {
         int indexOfDirectionNumber = padNumbers.indexOf(getDirectionNumber());
         int indexOfInterimSecretNumber = padNumbers.indexOf(getKeyNumber());
 
-        boolean directionNumberIsInTopRow = indexOfDirectionNumber >= 0 && indexOfDirectionNumber <= PINPAD_SQUARE_SIZE - 1;
-        boolean directionNumberIsInBottomRow = indexOfDirectionNumber >= PINPAD_SQUARE_SIZE * (PINPAD_SQUARE_SIZE - 1) && indexOfDirectionNumber <= padNumbers.size();
-        boolean directionNumberIsInLeftColumn = indexOfDirectionNumber % PINPAD_SQUARE_SIZE == 0;
-        boolean directionNumberIsInRightColumn = (indexOfDirectionNumber - (PINPAD_SQUARE_SIZE - 1)) % PINPAD_SQUARE_SIZE == 0;
+        boolean directionNumberIsInTopRow = indexOfDirectionNumber >= 0 && indexOfDirectionNumber <= squareSize - 1;
+        boolean directionNumberIsInBottomRow = indexOfDirectionNumber >= squareSize * (squareSize - 1) && indexOfDirectionNumber <= padNumbers.size();
+        boolean directionNumberIsInLeftColumn = indexOfDirectionNumber % squareSize == 0;
+        boolean directionNumberIsInRightColumn = (indexOfDirectionNumber - (squareSize - 1)) % squareSize == 0;
 
         if (directionNumberIsInTopRow) {
-            indexOfInterimSecretNumber = Math.floorMod(indexOfInterimSecretNumber - PINPAD_SQUARE_SIZE, padNumbers.size());
+            indexOfInterimSecretNumber = Math.floorMod(indexOfInterimSecretNumber - squareSize, padNumbers.size());
         }
         if (directionNumberIsInBottomRow) {
-            indexOfInterimSecretNumber = Math.floorMod(indexOfInterimSecretNumber + PINPAD_SQUARE_SIZE, padNumbers.size());
+            indexOfInterimSecretNumber = Math.floorMod(indexOfInterimSecretNumber + squareSize, padNumbers.size());
         }
         if (directionNumberIsInLeftColumn) {
             if (isInterimSecretNumberInLeftColumn(indexOfInterimSecretNumber)) {
-                indexOfInterimSecretNumber = indexOfInterimSecretNumber + (PINPAD_SQUARE_SIZE - 1);
+                indexOfInterimSecretNumber = indexOfInterimSecretNumber + (squareSize - 1);
             } else indexOfInterimSecretNumber = indexOfInterimSecretNumber - 1;
         }
         if (directionNumberIsInRightColumn) {
             if (isInterimSecretNumberInRightColumn(indexOfInterimSecretNumber)) {
-                indexOfInterimSecretNumber = indexOfInterimSecretNumber - (PINPAD_SQUARE_SIZE - 1);
+                indexOfInterimSecretNumber = indexOfInterimSecretNumber - (squareSize - 1);
             } else indexOfInterimSecretNumber = indexOfInterimSecretNumber + 1;
         }
 
@@ -58,11 +57,11 @@ public class PinPad {
     }
 
     private boolean isInterimSecretNumberInLeftColumn(int indexOfInterimSecretNumber) {
-        return indexOfInterimSecretNumber % PINPAD_SQUARE_SIZE == 0;
+        return indexOfInterimSecretNumber % squareSize == 0;
     }
 
     private boolean isInterimSecretNumberInRightColumn(int indexOfInterimSecretNumber) {
-        return (indexOfInterimSecretNumber - 2) % PINPAD_SQUARE_SIZE == 0;
+        return (indexOfInterimSecretNumber - 2) % squareSize == 0;
     }
 
     public int getKeyNumber() {
