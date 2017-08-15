@@ -19,6 +19,10 @@ public class PinPad {
 
         padNumbers = new ArrayList<Integer>();
 
+        fillArrayWithValues(squareSize);
+    }
+
+    private void fillArrayWithValues(int squareSize) {
         for (int i = 0; i <
                 (squareSize * squareSize); i++) {
             padNumbers.add(i);
