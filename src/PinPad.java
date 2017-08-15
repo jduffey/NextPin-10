@@ -39,12 +39,16 @@ public class PinPad {
     }
 
     private int moveHorizontal(int indexOfInterimSecretNumber) {
-        if (returnHorizontalDisplacement() < 0) {
+
+        boolean shouldMoveLeft = returnHorizontalDisplacement() < 0;
+        boolean shouldMoveRight = returnHorizontalDisplacement() > 0;
+
+        if (shouldMoveLeft) {
             if (isInterimSecretNumberIsOneLeftOfCenterline(indexOfInterimSecretNumber)) {
                 indexOfInterimSecretNumber = indexOfInterimSecretNumber + (squareSize - 1);
             } else indexOfInterimSecretNumber = indexOfInterimSecretNumber - 1;
         }
-        if (returnHorizontalDisplacement() > 0) {
+        if (shouldMoveRight) {
             if (isInterimSecretNumberIsOneRightOfCenterline(indexOfInterimSecretNumber)) {
                 indexOfInterimSecretNumber = indexOfInterimSecretNumber - (squareSize - 1);
             } else indexOfInterimSecretNumber = indexOfInterimSecretNumber + 1;
