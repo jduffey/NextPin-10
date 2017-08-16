@@ -10,33 +10,33 @@ public class PinPadTests {
 
     private PinPad pinPad;
 
-    @Before
-    public void setup() {
-        pinPad = new PinPad(3);
-    }
-
     @Test
     public void thePinPadClassShouldExist() {
+        pinPad = new PinPad(3);
         assertNotNull(pinPad);
     }
 
     @Test
     public void thePinPadClassShouldHaveAMethodThatReturnsTheSecretNumber() {
+        pinPad = new PinPad(3);
         assertNotNull(pinPad.returnSecretNumber());
     }
 
     @Test
     public void thePinPadShouldHaveAnArrayList() {
+        pinPad = new PinPad(3);
         assertNotNull(pinPad.padNumbers);
     }
 
     @Test
     public void theArrayListIsOfSizeNine() {
+        pinPad = new PinPad(3);
         assertEquals(9, pinPad.padNumbers.size());
     }
 
     @Test
     public void theArrayListContainsTheNumbersZeroThroughNine() {
+        pinPad = new PinPad(3);
         for (int i = 0; i < 9; i++) {
             assertTrue(pinPad.padNumbers.contains(i));
         }
@@ -44,6 +44,7 @@ public class PinPadTests {
 
     @Test
     public void thePinPadHasSettersAndGettersForKeyNumberAndDirectionNumber() {
+        pinPad = new PinPad(3);
         pinPad.setKeyNumber(1);
         pinPad.setDirectionNumber(5);
         assertEquals(1, pinPad.getKeyNumber());
@@ -52,6 +53,7 @@ public class PinPadTests {
 
     @Test
     public void pinPadShouldHaveAMethodForShufflingTheNumbersInItsArrayList() {
+        pinPad = new PinPad(3);
         pinPad.shuffle();
         assertTrue(pinPad.padNumbers.indexOf(0) != 0 ||
                 pinPad.padNumbers.indexOf(1) != 1 ||
@@ -67,6 +69,7 @@ public class PinPadTests {
 
     @Test
     public void thePinPadShouldHaveAMethodForSettingTheNumbersForTestingPurposes() {
+        pinPad = new PinPad(3);
         pinPad.setNumbers(0, 1, 2, 3, 4, 5, 6, 7, 8);
         for (Integer i = 0; i < 9; i++) {
             assertEquals(i, pinPad.padNumbers.get(i));
@@ -81,6 +84,7 @@ public class PinPadTests {
         In this test we will examine three cases where the key number is on different rows.
         In all cases the direction number is in the topCenter position.*/
 
+        pinPad = new PinPad(3);
         pinPad.setKeyNumber(1);
         pinPad.setDirectionNumber(5);
 
@@ -104,6 +108,7 @@ public class PinPadTests {
         /*This is achieved by moving forward three indices from the key number and taking modulo array size.
         In all cases the direction number is in the bottomCenter position.*/
 
+        pinPad = new PinPad(3);
         pinPad.setKeyNumber(1);
         pinPad.setDirectionNumber(5);
 
@@ -127,6 +132,7 @@ public class PinPadTests {
         /*This is achieved simply by assigning the value of the key number to the secret number.
         In all cases the direction number is in the middleCenter position.*/
 
+        pinPad = new PinPad(3);
         pinPad.setKeyNumber(1);
         pinPad.setDirectionNumber(5);
 
@@ -151,6 +157,7 @@ public class PinPadTests {
         except in the case of the key number being in the right-hand column where we must subtract two from the index of the key number.
         In all cases the direction number is in the middleRight position.*/
 
+        pinPad = new PinPad(3);
         pinPad.setKeyNumber(1);
         pinPad.setDirectionNumber(5);
 
@@ -175,6 +182,7 @@ public class PinPadTests {
         except in the case of the key number being in the left-hand column where we must add two from the index of the key number.
         In all cases the direction number is in the middleLeft position.*/
 
+        pinPad = new PinPad(3);
         pinPad.setKeyNumber(1);
         pinPad.setDirectionNumber(5);
 
@@ -198,6 +206,7 @@ public class PinPadTests {
         /*This can be achieved by applying the extracted methods for moving the index up and to the left.
         In all cases the direction number is in the topLeft position.*/
 
+        pinPad = new PinPad(3);
         pinPad.setKeyNumber(1);
         pinPad.setDirectionNumber(5);
 
@@ -220,6 +229,7 @@ public class PinPadTests {
         /*This can be achieved by applying the extracted methods for moving the index up and to the right.
         In all cases the direction number is in the topRight position.*/
 
+        pinPad = new PinPad(3);
         pinPad.setKeyNumber(1);
         pinPad.setDirectionNumber(5);
 
@@ -242,6 +252,7 @@ public class PinPadTests {
         /*This can be achieved by applying the extracted methods for moving the index down and to the left.
         In all cases the direction number is in the bottomLeft position.*/
 
+        pinPad = new PinPad(3);
         pinPad.setKeyNumber(1);
         pinPad.setDirectionNumber(5);
 
@@ -264,6 +275,7 @@ public class PinPadTests {
         /*This can be achieved by applying the extracted methods for moving the index down and to the right.
         In all cases the direction number is in the bottomRight position.*/
 
+        pinPad = new PinPad(3);
         pinPad.setKeyNumber(1);
         pinPad.setDirectionNumber(5);
 
@@ -283,6 +295,7 @@ public class PinPadTests {
     @Test
     public void randomizedTestCases() {
 
+        pinPad = new PinPad(3);
         pinPad.setKeyNumber(1);
         pinPad.setDirectionNumber(5);
 
@@ -322,12 +335,14 @@ public class PinPadTests {
     @Test
     public void constructorShouldTakeArgumentOfSquareSizeAndGenerateItsArrayBasedOnThatValue() {
         pinPad = new PinPad(3);
+        pinPad = new PinPad(3);
         assertEquals(9, pinPad.padNumbers.size());
     }
 
     @Test
     public void shouldHaveMethodForDeterminingHorizontalDisplacementOfDirectionNumber() {
 
+        pinPad = new PinPad(3);
         pinPad.setNumbers(5, 1, 4, 8, 2, 3, 6, 7, 0);
 
         pinPad.setDirectionNumber(5);
@@ -353,6 +368,7 @@ public class PinPadTests {
     @Test
     public void shouldHaveMethodForDeterminingVerticalDisplacementOfDirectionNumber() {
 
+        pinPad = new PinPad(3);
         pinPad.setNumbers(0, 1, 2, 3, 4, 5, 6, 7, 8);
 
         pinPad.setDirectionNumber(0);
@@ -377,6 +393,8 @@ public class PinPadTests {
 
     @Test
     public void testForRefactoringHorizontalMovementCode(){
+
+        pinPad = new PinPad(3);
         pinPad.setKeyNumber(1);
         pinPad.setDirectionNumber(5);
 
