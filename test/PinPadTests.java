@@ -411,4 +411,13 @@ public class PinPadTests {
         assertEquals(6, pinPad.returnSecretNumber());
     }
 
+    @Test
+    public void aPinpadOfSquareSizeFourShouldContainTheValuesZeroThroughFifteen(){
+
+        pinPad = new PinPad(4);
+        for (int i = 0; i <= 15; i++) {
+            assertTrue(pinPad.padNumbers.contains(i));
+        }
+    }
+
 }
