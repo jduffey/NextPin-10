@@ -122,4 +122,23 @@ public class PinPad {
         padNumbers.set(7, bottomCenter);
         padNumbers.set(8, bottomRight);
     }
+
+    public void setNumbers16(int i0, int i1, int i2, int i3, int i4, int i5, int i6, int i7, int i8, int i9, int i10, int i11, int i12, int i13, int i14, int i15) {
+        padNumbers.set(0, i0);
+        padNumbers.set(1, i1);
+        padNumbers.set(2, i2);
+        padNumbers.set(3, i3);
+        padNumbers.set(4, i4);
+        padNumbers.set(5, i5);
+        padNumbers.set(6, i6);
+        padNumbers.set(7, i7);
+        padNumbers.set(8, i8);
+        padNumbers.set(9, i9);
+        padNumbers.set(10, i10);
+        padNumbers.set(11, i11);
+        padNumbers.set(12, i12);
+        padNumbers.set(13, i13);
+        padNumbers.set(14, i14);
+        padNumbers.set(15, i15);
+    }
 }

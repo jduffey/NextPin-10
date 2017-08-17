@@ -392,7 +392,7 @@ public class PinPadTests {
     }
 
     @Test
-    public void testForRefactoringHorizontalMovementCode(){
+    public void testForRefactoringHorizontalMovementCode() {
 
         pinPad = new PinPad(3);
         pinPad.setKeyNumber(1);
@@ -412,11 +412,21 @@ public class PinPadTests {
     }
 
     @Test
-    public void aPinpadOfSquareSizeFourShouldContainTheValuesZeroThroughFifteen(){
+    public void aPinpadOfSquareSizeFourShouldContainTheValuesZeroThroughFifteen() {
 
         pinPad = new PinPad(4);
         for (int i = 0; i <= 15; i++) {
             assertTrue(pinPad.padNumbers.contains(i));
+        }
+    }
+
+    @Test
+    public void pinpadShouldHaveMethodForSettingValuesWhenSquareSizeIsFourForTestingPurposes() {
+
+        pinPad = new PinPad(4);
+        pinPad.setNumbers16(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15);
+        for (Integer i = 0; i <= 15; i++) {
+            assertEquals(i, pinPad.padNumbers.get(i));
         }
     }
 
