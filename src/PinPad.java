@@ -40,18 +40,19 @@ public class PinPad {
 
     private int moveHorizontal(int indexOfInterimSecretNumber) {
 
-        boolean shouldMoveLeft = returnHorizontalDisplacement() < 0;
-        boolean shouldMoveRight = returnHorizontalDisplacement() > 0;
-
-        if (shouldMoveLeft) {
-            if (isInterimSecretNumberIsOneLeftOfCenterline(indexOfInterimSecretNumber)) {
-                indexOfInterimSecretNumber = indexOfInterimSecretNumber + (squareSize - 1);
-            } else indexOfInterimSecretNumber = indexOfInterimSecretNumber - 1;
+        if (returnHorizontalDisplacement() < 0) {
+            indexOfInterimSecretNumber = indexOfInterimSecretNumber
+                    + returnHorizontalDisplacement()
+                    + squareSize
+                    * ((((indexOfInterimSecretNumber + (returnHorizontalDisplacement() + squareSize))
+                    % squareSize + Math.abs(returnHorizontalDisplacement())) / squareSize));
         }
-        if (shouldMoveRight) {
-            if (isInterimSecretNumberIsOneRightOfCenterline(indexOfInterimSecretNumber)) {
-                indexOfInterimSecretNumber = indexOfInterimSecretNumber - (squareSize - 1);
-            } else indexOfInterimSecretNumber = indexOfInterimSecretNumber + 1;
+        if (returnHorizontalDisplacement() > 0) {
+            indexOfInterimSecretNumber = indexOfInterimSecretNumber
+                    + returnHorizontalDisplacement()
+                    - squareSize
+                    * ((indexOfInterimSecretNumber
+                    % squareSize + returnHorizontalDisplacement()) / squareSize);
         }
         return indexOfInterimSecretNumber;
     }
@@ -63,16 +64,6 @@ public class PinPad {
             indexOfInterimSecretNumber = Math.floorMod(indexOfInterimSecretNumber + squareSize, padNumbers.size());
         }
         return indexOfInterimSecretNumber;
-    }
-
-    private boolean isInterimSecretNumberIsOneLeftOfCenterline(int indexOfInterimSecretNumber) {
-        int verticalCenterlineIndexAsAJavaInt = squareSize / 2;
-        return indexOfInterimSecretNumber % squareSize == verticalCenterlineIndexAsAJavaInt - 1;
-    }
-
-    private boolean isInterimSecretNumberIsOneRightOfCenterline(int indexOfInterimSecretNumber) {
-        int verticalCenterlineIndexAsAJavaInt = squareSize / 2;
-        return indexOfInterimSecretNumber % squareSize == verticalCenterlineIndexAsAJavaInt + 1;
     }
 
     public int returnHorizontalDisplacement() {
