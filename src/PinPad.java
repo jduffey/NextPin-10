@@ -59,7 +59,10 @@ public class PinPad {
 
     private int moveVertical(int indexOfInterimSecretNumber) {
         if (returnVerticalDisplacement() != 0) {
-            indexOfInterimSecretNumber = Math.floorMod(indexOfInterimSecretNumber - Integer.signum(returnVerticalDisplacement()) * squareSize, padNumbers.size());
+            // The sign before the Integer.signum() method is what determines the orientation of the y-axis.
+            indexOfInterimSecretNumber = Math.floorMod(indexOfInterimSecretNumber
+                    - Integer.signum(returnVerticalDisplacement())
+                    * squareSize, padNumbers.size());
         }
         return indexOfInterimSecretNumber;
     }
