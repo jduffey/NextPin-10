@@ -430,4 +430,53 @@ public class PinPadTests {
         }
     }
 
+    @Test
+    public void returnVerticalAndHorizontalDisplacementMethodsShouldWorkOnOddSizedPads() {
+
+        pinPad = new PinPad(3);
+        pinPad.setDirectionNumber(2); // One right of and one above center.
+        assertEquals(1, pinPad.returnHorizontalDisplacement());
+        assertEquals(1, pinPad.returnVerticalDisplacement());
+
+        pinPad = new PinPad(3);
+        pinPad.setDirectionNumber(4); // Dead center.
+        assertEquals(0, pinPad.returnHorizontalDisplacement());
+        assertEquals(0, pinPad.returnVerticalDisplacement());
+
+        pinPad = new PinPad(3);
+        pinPad.setDirectionNumber(6); // One left of and one below center.
+        assertEquals(-1, pinPad.returnHorizontalDisplacement());
+        assertEquals(-1, pinPad.returnVerticalDisplacement());
+
+        pinPad = new PinPad(5); // ** PAD SIZE FIVE **
+        pinPad.setDirectionNumber(4); // Up two, right two.
+        assertEquals(2, pinPad.returnHorizontalDisplacement());
+        assertEquals(2, pinPad.returnVerticalDisplacement());
+
+        pinPad = new PinPad(5);
+        pinPad.setDirectionNumber(8); // Up one, right one.
+        assertEquals(1, pinPad.returnHorizontalDisplacement());
+        assertEquals(1, pinPad.returnVerticalDisplacement());
+
+        pinPad = new PinPad(5);
+        pinPad.setDirectionNumber(12); // Dead center.
+        assertEquals(0, pinPad.returnHorizontalDisplacement());
+        assertEquals(0, pinPad.returnVerticalDisplacement());
+
+        pinPad = new PinPad(5);
+        pinPad.setDirectionNumber(16); // One left, one down.
+        assertEquals(-1, pinPad.returnHorizontalDisplacement());
+        assertEquals(-1, pinPad.returnVerticalDisplacement());
+
+        pinPad = new PinPad(5);
+        pinPad.setDirectionNumber(20); // Two left, two down.
+        assertEquals(-2, pinPad.returnHorizontalDisplacement());
+        assertEquals(-2, pinPad.returnVerticalDisplacement());
+
+        pinPad = new PinPad(7); // ** PAD SIZE SEVEN **
+        pinPad.setDirectionNumber(42); // Three left, three down.
+        assertEquals(-3, pinPad.returnHorizontalDisplacement());
+        assertEquals(-3, pinPad.returnVerticalDisplacement());
+    }
+
 }
