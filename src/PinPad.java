@@ -58,10 +58,8 @@ public class PinPad {
     }
 
     private int moveVertical(int indexOfInterimSecretNumber) {
-        if (returnVerticalDisplacement() > 0) {
-            indexOfInterimSecretNumber = Math.floorMod(indexOfInterimSecretNumber - squareSize, padNumbers.size());
-        } else if (returnVerticalDisplacement() < 0) {
-            indexOfInterimSecretNumber = Math.floorMod(indexOfInterimSecretNumber + squareSize, padNumbers.size());
+        if (returnVerticalDisplacement() != 0) {
+            indexOfInterimSecretNumber = Math.floorMod(indexOfInterimSecretNumber - Integer.signum(returnVerticalDisplacement()) * squareSize, padNumbers.size());
         }
         return indexOfInterimSecretNumber;
     }
