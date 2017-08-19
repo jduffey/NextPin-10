@@ -58,11 +58,9 @@ public class PinPad {
     }
 
     private int moveVertical(int indexOfInterimSecretNumber) {
-        if (returnVerticalDisplacementFactor() != 0) {
-            // The sign before the Integer.signum() method is what determines the orientation of the y-axis.
-            indexOfInterimSecretNumber = Math.floorMod(indexOfInterimSecretNumber
-                    - Integer.signum(returnVerticalDisplacementFactor())
-                    * squareSize, padNumbers.size());
+        if (returnVerticalDisplacementFactor() != 0) { // This condition could resolve false (== 0) only with odd squares.
+            indexOfInterimSecretNumber = Math.floorMod((indexOfInterimSecretNumber
+                    - returnVerticalDisplacementFactor() * squareSize), padNumbers.size());
         }
         return indexOfInterimSecretNumber;
     }
@@ -92,7 +90,7 @@ public class PinPad {
         int centerlineValue = squareSize / 2;
         verticalDisplacementFactor = rowNumberIfBottomRowDefinedAsRowZero - centerlineValue;
         // This if condition is what compensates for the "invisible middle row" in even squares.
-        if (squareSize % 2 == 0 && rowNumberIfBottomRowDefinedAsRowZero >= centerlineValue){
+        if (squareSize % 2 == 0 && rowNumberIfBottomRowDefinedAsRowZero >= centerlineValue) {
             verticalDisplacementFactor++;
         }
         return verticalDisplacementFactor;
@@ -152,7 +150,7 @@ public class PinPad {
         padNumbers.set(15, i15);
     }
 
-    public int getSquareSize(){
+    public int getSquareSize() {
         return squareSize;
     }
 }
