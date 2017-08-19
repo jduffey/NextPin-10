@@ -479,43 +479,100 @@ public class PinPadTests {
     }
 
     @Test
-    public void returnVerticalAndHorizontalDisplacementMethodsShouldWorkOnEvenSizedPads(){
+    public void returnVerticalAndHorizontalDisplacementMethodsShouldWorkOnEvenSizedPads() {
 
         pinPad = new PinPad(4);
 
         pinPad.setDirectionNumber(3); // i.e. top right when pad size is four.
-        assertEquals(2,pinPad.returnHorizontalDisplacementFactor());
-        assertEquals(2,pinPad.returnVerticalDisplacementFactor());
+        assertEquals(2, pinPad.returnHorizontalDisplacementFactor());
+        assertEquals(2, pinPad.returnVerticalDisplacementFactor());
 
         pinPad.setDirectionNumber(6); // i.e. top right when pad size is four.
-        assertEquals(1,pinPad.returnHorizontalDisplacementFactor());
-        assertEquals(1,pinPad.returnVerticalDisplacementFactor());
+        assertEquals(1, pinPad.returnHorizontalDisplacementFactor());
+        assertEquals(1, pinPad.returnVerticalDisplacementFactor());
 
         pinPad.setDirectionNumber(9); // i.e. top right when pad size is four.
-        assertEquals(-1,pinPad.returnHorizontalDisplacementFactor());
-        assertEquals(-1,pinPad.returnVerticalDisplacementFactor());
+        assertEquals(-1, pinPad.returnHorizontalDisplacementFactor());
+        assertEquals(-1, pinPad.returnVerticalDisplacementFactor());
 
         pinPad.setDirectionNumber(12); // i.e. top right when pad size is four.
-        assertEquals(-2,pinPad.returnHorizontalDisplacementFactor());
-        assertEquals(-2,pinPad.returnVerticalDisplacementFactor());
+        assertEquals(-2, pinPad.returnHorizontalDisplacementFactor());
+        assertEquals(-2, pinPad.returnVerticalDisplacementFactor());
 
         pinPad = new PinPad(8);
 
         pinPad.setDirectionNumber(7);
         assertEquals(4, pinPad.returnHorizontalDisplacementFactor());
-        assertEquals(4,pinPad.returnVerticalDisplacementFactor());
+        assertEquals(4, pinPad.returnVerticalDisplacementFactor());
 
         pinPad.setDirectionNumber(21);
         assertEquals(2, pinPad.returnHorizontalDisplacementFactor());
-        assertEquals(2,pinPad.returnVerticalDisplacementFactor());
+        assertEquals(2, pinPad.returnVerticalDisplacementFactor());
 
         pinPad.setDirectionNumber(42);
         assertEquals(-2, pinPad.returnHorizontalDisplacementFactor());
-        assertEquals(-2,pinPad.returnVerticalDisplacementFactor());
+        assertEquals(-2, pinPad.returnVerticalDisplacementFactor());
 
         pinPad.setDirectionNumber(56);
         assertEquals(-4, pinPad.returnHorizontalDisplacementFactor());
         assertEquals(-4, pinPad.returnVerticalDisplacementFactor());
+
+    }
+
+    /*
+    At this point I realized after making a "printer" for random various-sized pads that there appears to be an error
+    with the vertical movement in squares larger than size three.
+
+    In squares of size four:
+    -When it should go down two it goes down one. (error)
+    -When it should go up two it goes up one. (error)
+    -When it should go down one it goes down one. (good)
+    -When it should go up one it goes up one. (good)
+
+    In squares of size five:
+    -When it should go up two it goes up one. (error)
+    -When it should go down two it goes down two. (error)
+
+    In squares of size six:
+    -When it should go down two it goes down one. (error)
+    -When it should go up two it goes up one. (error)
+    -When it should go down three it goes down one. (error)
+    -When it should go up three it goes up one. (error)
+
+    In squares of size seven:
+    -When it should go down one it goes down one. (good)
+    -When it should go up one it goes up one. (good)
+    -When it should go up two it goes up one. (error)
+    -When it should go up three it goes up one. (error)
+    -When it should go down three it goes down one. (error)
+
+    Upon investigating squares of size 11 and 12 it appears that the overall bug is that the direction of movement
+    in the vertical axis is obeyed but only moves one unit in that direction.
+
+    Therefore we should create tests for various size pads the implement these conditions.
+    */
+
+    @Test
+    public void verticalDisplacementShouldWorkProperlyForSquareSizeFour() {
+
+        pinPad = new PinPad(4);
+
+        pinPad.setKeyNumber(1);
+        pinPad.setDirectionNumber(5);
+
+        // Up two, left one.
+        pinPad.setNumbers16(9, 5, 1, 13,
+                7, 8, 11, 10,
+                4, 12, 14, 6,
+                2, 0, 3, 15);
+        assertEquals(12, pinPad.returnSecretNumber());
+
+        // Down two, right two.
+        pinPad.setNumbers16(9, 0, 1, 13,
+                7, 8, 11, 10,
+                4, 12, 14, 6,
+                2, 15, 3, 5);
+        assertEquals(4, pinPad.returnSecretNumber());
 
     }
 
