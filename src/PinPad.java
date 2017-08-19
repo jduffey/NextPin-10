@@ -74,10 +74,10 @@ public class PinPad {
         // Like an x-y graph, right is positive and left is negative.
         int columnNumberIfLeftColumnDefinedAsRowZero = padNumbers.indexOf(directionNumber) % squareSize;
         int centerlineValue = squareSize / 2;
+        horizontalDisplacementFactor = columnNumberIfLeftColumnDefinedAsRowZero - centerlineValue;
+        // This if condition is what compensates for the "invisible middle column" in even squares.
         if (squareSize % 2 == 0 && columnNumberIfLeftColumnDefinedAsRowZero >= centerlineValue) {
-            horizontalDisplacementFactor = columnNumberIfLeftColumnDefinedAsRowZero - centerlineValue + 1;
-        } else {
-            horizontalDisplacementFactor = columnNumberIfLeftColumnDefinedAsRowZero - centerlineValue;
+            horizontalDisplacementFactor++;
         }
         return horizontalDisplacementFactor;
 
@@ -90,11 +90,11 @@ public class PinPad {
         // Like an x-y graph, up is positive and down is negative.
         int rowNumberIfBottomRowDefinedAsRowZero = ((squareSize * squareSize - 1) - padNumbers.indexOf(directionNumber)) / squareSize;
         int centerlineValue = squareSize / 2;
+        verticalDisplacementFactor = rowNumberIfBottomRowDefinedAsRowZero - centerlineValue;
+        // This if condition is what compensates for the "invisible middle row" in even squares.
         if (squareSize % 2 == 0 && rowNumberIfBottomRowDefinedAsRowZero >= centerlineValue){
-            verticalDisplacementFactor = rowNumberIfBottomRowDefinedAsRowZero - centerlineValue + 1;
-        }else{
-        verticalDisplacementFactor = rowNumberIfBottomRowDefinedAsRowZero - centerlineValue;}
-
+            verticalDisplacementFactor++;
+        }
         return verticalDisplacementFactor;
 
     }
