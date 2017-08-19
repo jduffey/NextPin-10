@@ -69,19 +69,33 @@ public class PinPad {
 
     public int returnHorizontalDisplacementFactor() { // Involves columns.
 
+        int horizontalDisplacementFactor;
+
         // Like an x-y graph, right is positive and left is negative.
         int columnNumberIfLeftColumnDefinedAsRowZero = padNumbers.indexOf(directionNumber) % squareSize;
         int centerlineValue = squareSize / 2;
-        return columnNumberIfLeftColumnDefinedAsRowZero - centerlineValue;
+        if (squareSize % 2 == 0 && columnNumberIfLeftColumnDefinedAsRowZero >= centerlineValue) {
+            horizontalDisplacementFactor = columnNumberIfLeftColumnDefinedAsRowZero - centerlineValue + 1;
+        } else {
+            horizontalDisplacementFactor = columnNumberIfLeftColumnDefinedAsRowZero - centerlineValue;
+        }
+        return horizontalDisplacementFactor;
 
     }
 
     public int returnVerticalDisplacementFactor() { // Involves rows.
 
+        int verticalDisplacementFactor;
+
         // Like an x-y graph, up is positive and down is negative.
         int rowNumberIfBottomRowDefinedAsRowZero = ((squareSize * squareSize - 1) - padNumbers.indexOf(directionNumber)) / squareSize;
         int centerlineValue = squareSize / 2;
-        return rowNumberIfBottomRowDefinedAsRowZero - centerlineValue;
+        if (squareSize % 2 == 0 && rowNumberIfBottomRowDefinedAsRowZero >= centerlineValue){
+            verticalDisplacementFactor = rowNumberIfBottomRowDefinedAsRowZero - centerlineValue + 1;
+        }else{
+        verticalDisplacementFactor = rowNumberIfBottomRowDefinedAsRowZero - centerlineValue;}
+
+        return verticalDisplacementFactor;
 
     }
 
