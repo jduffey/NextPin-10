@@ -151,4 +151,8 @@ public class PinPad {
         padNumbers.set(14, i14);
         padNumbers.set(15, i15);
     }
+
+    public int getSquareSize(){
+        return squareSize;
+    }
 }
