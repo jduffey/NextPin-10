@@ -505,6 +505,14 @@ public class PinPadTests {
         assertEquals(4, pinPad.returnHorizontalDisplacementFactor());
         assertEquals(4,pinPad.returnVerticalDisplacementFactor());
 
+        pinPad.setDirectionNumber(21);
+        assertEquals(2, pinPad.returnHorizontalDisplacementFactor());
+        assertEquals(2,pinPad.returnVerticalDisplacementFactor());
+
+        pinPad.setDirectionNumber(42);
+        assertEquals(-2, pinPad.returnHorizontalDisplacementFactor());
+        assertEquals(-2,pinPad.returnVerticalDisplacementFactor());
+
         pinPad.setDirectionNumber(56);
         assertEquals(-4, pinPad.returnHorizontalDisplacementFactor());
         assertEquals(-4, pinPad.returnVerticalDisplacementFactor());
