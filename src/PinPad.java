@@ -40,44 +40,48 @@ public class PinPad {
 
     private int moveHorizontal(int indexOfInterimSecretNumber) {
 
-        if (returnHorizontalDisplacement() < 0) {
+        if (returnHorizontalDisplacementFactor() > 0) {
             indexOfInterimSecretNumber = indexOfInterimSecretNumber
-                    + returnHorizontalDisplacement()
-                    + squareSize
-                    * ((((indexOfInterimSecretNumber + (returnHorizontalDisplacement() + squareSize))
-                    % squareSize + Math.abs(returnHorizontalDisplacement())) / squareSize));
-        }
-        if (returnHorizontalDisplacement() > 0) {
-            indexOfInterimSecretNumber = indexOfInterimSecretNumber
-                    + returnHorizontalDisplacement()
+                    + returnHorizontalDisplacementFactor()
                     - squareSize
                     * ((indexOfInterimSecretNumber
-                    % squareSize + returnHorizontalDisplacement()) / squareSize);
+                    % squareSize + returnHorizontalDisplacementFactor()) / squareSize);
+        }
+        if (returnHorizontalDisplacementFactor() < 0) {
+            indexOfInterimSecretNumber = indexOfInterimSecretNumber
+                    + returnHorizontalDisplacementFactor()
+                    + squareSize
+                    * ((((indexOfInterimSecretNumber + (returnHorizontalDisplacementFactor() + squareSize))
+                    % squareSize + Math.abs(returnHorizontalDisplacementFactor())) / squareSize));
         }
         return indexOfInterimSecretNumber;
     }
 
     private int moveVertical(int indexOfInterimSecretNumber) {
-        if (returnVerticalDisplacement() != 0) {
+        if (returnVerticalDisplacementFactor() != 0) {
             // The sign before the Integer.signum() method is what determines the orientation of the y-axis.
             indexOfInterimSecretNumber = Math.floorMod(indexOfInterimSecretNumber
-                    - Integer.signum(returnVerticalDisplacement())
+                    - Integer.signum(returnVerticalDisplacementFactor())
                     * squareSize, padNumbers.size());
         }
         return indexOfInterimSecretNumber;
     }
 
-    public int returnHorizontalDisplacement() {
+    public int returnHorizontalDisplacementFactor() { // Involves columns.
 
         // Like an x-y graph, right is positive and left is negative.
-        return padNumbers.indexOf(directionNumber) % squareSize - squareSize / 2;
+        int columnNumberIfLeftColumnDefinedAsRowZero = padNumbers.indexOf(directionNumber) % squareSize;
+        int centerlineValue = squareSize / 2;
+        return columnNumberIfLeftColumnDefinedAsRowZero - centerlineValue;
 
     }
 
-    public int returnVerticalDisplacement() {
+    public int returnVerticalDisplacementFactor() { // Involves rows.
 
         // Like an x-y graph, up is positive and down is negative.
-        return squareSize / 2 - padNumbers.indexOf(directionNumber) / (squareSize);
+        int rowNumberIfBottomRowDefinedAsRowZero = ((squareSize * squareSize - 1) - padNumbers.indexOf(directionNumber)) / squareSize;
+        int centerlineValue = squareSize / 2;
+        return rowNumberIfBottomRowDefinedAsRowZero - centerlineValue;
 
     }
 
