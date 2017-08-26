@@ -74,7 +74,7 @@ public class PinApp {
             }
 
             System.out.println();
-            System.out.println("Enter Secret Number: ");
+            System.out.print("Enter Secret Number: ");
             int guessedSecretNumber = sc.nextInt();
 
             guessedSecretNumbers[whichPadAreWeOn - 1] = guessedSecretNumber;
@@ -98,6 +98,25 @@ public class PinApp {
         }
 
         System.out.print("<-- Actual secret numbers");
+
+        System.out.println();
+
+        boolean accessGranted = false;
+
+        for (int i = 0; i < PIN_LENGTH; i++) {
+
+            if (guessedSecretNumbers[i] != actualSecretNumbers[i]) {
+                accessGranted = false;
+                break;
+            } else accessGranted = true;
+
+        }
+
+        System.out.println();
+
+        if (accessGranted) {
+            System.out.println("ACCESS GRANTED");
+        } else System.out.println("INCORRECT PIN - ACCESS DENIED");
 
     }
 }
