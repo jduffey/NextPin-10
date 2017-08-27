@@ -38,7 +38,7 @@ public class PinApp {
         int[] guessedSecretNumbers = new int[PIN_LENGTH];
         int[] actualSecretNumbers = new int[PIN_LENGTH];
 
-        for (int whichPadAreWeOn = 1; whichPadAreWeOn <= PIN_LENGTH; whichPadAreWeOn++) {
+        for (int whichPadAreWeOn = 0; whichPadAreWeOn < PIN_LENGTH; whichPadAreWeOn++) {
 
             // Print which PIN/number pad the user is on
             System.out.println("[[ Pad #" + whichPadAreWeOn + " ]]");
@@ -46,20 +46,15 @@ public class PinApp {
 
             pinPad.shuffle(); // Don't forget to shuffle!
 
+            // For each row
             for (int row = 0; row < pinPad.getSquareSize(); row++) {
 
+                // For each element in the row
                 for (int rowElement = 0; rowElement < pinPad.getSquareSize(); rowElement++) {
 
                     int whichElementAreWeOn = rowElement + row * pinPad.getSquareSize();
 
-                    if (pinPad.padNumbers.get(whichElementAreWeOn) < 10) {
-                        System.out.print("  " + pinPad.padNumbers.get(whichElementAreWeOn)); // Hacky way to get numbers to line up for square sizes under 10 (i.e. no numbers larger than two digits).
-                    } else if (pinPad.padNumbers.get(whichElementAreWeOn) >= 10 && pinPad.padNumbers.get(whichElementAreWeOn) < 100) {
-                        System.out.print(" " + pinPad.padNumbers.get(whichElementAreWeOn));
-                    } else {
-                        System.out.print(pinPad.padNumbers.get(whichElementAreWeOn));
-                    }
-                    System.out.print(" ");
+                    printTheValueInThatPosition(pinPad, whichElementAreWeOn);
 
                 }
 
@@ -72,14 +67,14 @@ public class PinApp {
             int guessedSecretNumber = askForSecretNumber(sc);
 
             // Add the entered number into the array
-            guessedSecretNumbers[whichPadAreWeOn - 1] = guessedSecretNumber;
+            guessedSecretNumbers[whichPadAreWeOn] = guessedSecretNumber;
 
             // Print the actual secret number (for testing/demo purposes)
             System.out.println("(Correct secret number was: " + pinPad.returnSecretNumber() + ")");
             System.out.println();
 
             // Add the actual secret number into the array
-            actualSecretNumbers[whichPadAreWeOn - 1] = pinPad.returnSecretNumber();
+            actualSecretNumbers[whichPadAreWeOn] = pinPad.returnSecretNumber();
         }
 
         printGuessedSecretNumbers(guessedSecretNumbers);
@@ -88,6 +83,17 @@ public class PinApp {
 
         validateEnteredNumbers(guessedSecretNumbers, actualSecretNumbers);
 
+    }
+
+    private static void printTheValueInThatPosition(PinPad pinPad, int whichElementAreWeOn) {
+        if (pinPad.padNumbers.get(whichElementAreWeOn) < 10) {
+            System.out.print("  " + pinPad.padNumbers.get(whichElementAreWeOn)); // Hacky way to get numbers to line up for square sizes under 10 (i.e. no numbers larger than two digits).
+        } else if (pinPad.padNumbers.get(whichElementAreWeOn) >= 10 && pinPad.padNumbers.get(whichElementAreWeOn) < 100) {
+            System.out.print(" " + pinPad.padNumbers.get(whichElementAreWeOn));
+        } else {
+            System.out.print(pinPad.padNumbers.get(whichElementAreWeOn));
+        }
+        System.out.print(" ");
     }
 
     private static int askForSecretNumber(Scanner sc) {
@@ -120,7 +126,7 @@ public class PinApp {
 
     private static void printInstructionsForKeyAndDirectionNumbers(int squareSize) {
         System.out.println("Key and direction numbers must be between");
-        System.out.println("0 and " + (squareSize * squareSize -1));
+        System.out.println("0 and " + (squareSize * squareSize - 1));
         System.out.println();
     }
 
