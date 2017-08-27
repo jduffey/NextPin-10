@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class PinApp {
 
     public static final int PIN_LENGTH = 4;
+    public static final int MAX_ALLOWED_SQUARE_SIZE = 31; // 31 helps for display purposes
 
     public static void main(String[] args) {
 
@@ -131,7 +132,7 @@ public class PinApp {
     }
 
     private static int askSquareSize(Scanner sc) {
-        System.out.print("Enter pad size (less than 32): ");
+        System.out.print("Enter pad size (less than " + MAX_ALLOWED_SQUARE_SIZE + "): ");
         int squareSize = sc.nextInt();
         System.out.println();
         return squareSize;
