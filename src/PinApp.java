@@ -13,41 +13,34 @@ public class PinApp {
         Scanner sc = new Scanner(System.in);
 
         // Welcome message
-        System.out.println();
-        System.out.println("*****************************");
-        System.out.println("**  WELCOME TO THE PINPAD  **");
-        System.out.println("*****************************");
-        System.out.println();
-        /*System.out.println("Enter your name: ");
-        String name = sc.nextLine();*/
+        printWelcomeMessage();
 
-        System.out.print("Enter pad size (less than 32): ");
-        int squareSize = sc.nextInt();
-        System.out.println();
+        // Ask for pad square size
+        int squareSize = askSquareSize(sc);
 
-        System.out.println("Key and direction numbers must be between");
-        System.out.println("0 and the square of the pad size.");
-        System.out.println();
-        System.out.print("Enter key number: ");
-        int keyNumber = sc.nextInt();
-        System.out.print("Enter direction number: ");
-        int directionNumber = sc.nextInt();
+        // Print instructions for key and direction numbers
+        printInstructionsForKeyAndDirectionNumbers(squareSize);
+
+        // Ask for key number
+        int keyNumber = askKeyNumber(sc);
+
+        // Ask for direction number
+        int directionNumber = askDirectionNumber(sc);
+
         System.out.println();
 
-        System.out.println("Key number is " + keyNumber);
-        System.out.println("Direction number is " + directionNumber);
-        System.out.println();
+        printKeyAndDirectionNumbers(keyNumber, directionNumber);
 
-        PinPad pinPad = new PinPad(squareSize);
+        // Instantiate and setup pinpad
+        PinPad pinPad = setupPinPad(squareSize, keyNumber, directionNumber);
 
-        pinPad.setKeyNumber(keyNumber);
-        pinPad.setDirectionNumber(directionNumber);
-
-        int[] guessedSecretNumbers = new int[4];
-        int[] actualSecretNumbers = new int[4];
+        // Create arrays
+        int[] guessedSecretNumbers = new int[PIN_LENGTH];
+        int[] actualSecretNumbers = new int[PIN_LENGTH];
 
         for (int whichPadAreWeOn = 1; whichPadAreWeOn <= PIN_LENGTH; whichPadAreWeOn++) {
 
+            // Print which PIN/number pad the user is on
             System.out.println("[[ Pad #" + whichPadAreWeOn + " ]]");
             System.out.println();
 
@@ -74,17 +67,79 @@ public class PinApp {
             }
 
             System.out.println();
-            System.out.print("Enter Secret Number: ");
-            int guessedSecretNumber = sc.nextInt();
 
+            // Ask user to enter secret number
+            int guessedSecretNumber = askForSecretNumber(sc);
+
+            // Add the entered number into the array
             guessedSecretNumbers[whichPadAreWeOn - 1] = guessedSecretNumber;
 
+            // Print the actual secret number (for testing/demo purposes)
             System.out.println("(Correct secret number was: " + pinPad.returnSecretNumber() + ")");
             System.out.println();
 
+            // Add the actual secret number into the array
             actualSecretNumbers[whichPadAreWeOn - 1] = pinPad.returnSecretNumber();
         }
 
+        printGuessedSecretNumbers(guessedSecretNumbers);
+
+        printActualSecretNumbers(actualSecretNumbers);
+
+        validateEnteredNumbers(guessedSecretNumbers, actualSecretNumbers);
+
+    }
+
+    private static int askForSecretNumber(Scanner sc) {
+        System.out.print("Enter Secret Number: ");
+        return sc.nextInt();
+    }
+
+    private static PinPad setupPinPad(int squareSize, int keyNumber, int directionNumber) {
+        PinPad pinPad = new PinPad(squareSize);
+        pinPad.setKeyNumber(keyNumber);
+        pinPad.setDirectionNumber(directionNumber);
+        return pinPad;
+    }
+
+    private static void printKeyAndDirectionNumbers(int keyNumber, int directionNumber) {
+        System.out.println("Key number is " + keyNumber);
+        System.out.println("Direction number is " + directionNumber);
+        System.out.println();
+    }
+
+    private static int askDirectionNumber(Scanner sc) {
+        System.out.print("Enter direction number: ");
+        return sc.nextInt();
+    }
+
+    private static int askKeyNumber(Scanner sc) {
+        System.out.print("Enter key number: ");
+        return sc.nextInt();
+    }
+
+    private static void printInstructionsForKeyAndDirectionNumbers(int squareSize) {
+        System.out.println("Key and direction numbers must be between");
+        System.out.println("0 and " + (squareSize * squareSize -1));
+        System.out.println();
+    }
+
+    private static int askSquareSize(Scanner sc) {
+        System.out.print("Enter pad size (less than 32): ");
+        int squareSize = sc.nextInt();
+        System.out.println();
+        return squareSize;
+    }
+
+    private static void printWelcomeMessage() {
+        System.out.println();
+        System.out.println("*****************************");
+        System.out.println("**  WELCOME TO THE PINPAD  **");
+        System.out.println("*****************************");
+        System.out.println();
+    }
+
+    private static void printGuessedSecretNumbers(int[] guessedSecretNumbers) {
         for (int i = 0; i < PIN_LENGTH; i++) {
             System.out.print(guessedSecretNumbers[i] + " ");
         }
@@ -92,7 +147,9 @@ public class PinApp {
         System.out.print("<-- Guessed secret numbers");
 
         System.out.println();
+    }
 
+    private static void printActualSecretNumbers(int[] actualSecretNumbers) {
         for (int i = 0; i < PIN_LENGTH; i++) {
             System.out.print(actualSecretNumbers[i] + " ");
         }
@@ -100,7 +157,9 @@ public class PinApp {
         System.out.print("<-- Actual secret numbers");
 
         System.out.println();
+    }
 
+    private static void validateEnteredNumbers(int[] guessedSecretNumbers, int[] actualSecretNumbers) {
         boolean accessGranted = false;
 
         for (int i = 0; i < PIN_LENGTH; i++) {
@@ -117,6 +176,5 @@ public class PinApp {
         if (accessGranted) {
             System.out.println("ACCESS GRANTED");
         } else System.out.println("INCORRECT PIN - ACCESS DENIED");
-
     }
 }
