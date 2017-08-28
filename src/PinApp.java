@@ -7,8 +7,9 @@ public class PinApp {
 
     public static final int PIN_LENGTH = 4;
     public static final int MAX_ALLOWED_SQUARE_SIZE = 31; // 31 helps for display purposes
+    public static final int MIN_ALLOWED_SQUARE_SIZE = 3; // Because it looks silly if it's 2
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         // Initializing the scanner
         Scanner sc = new Scanner(System.in);
@@ -71,7 +72,7 @@ public class PinApp {
             guessedSecretNumbers[whichPadAreWeOn] = guessedSecretNumber;
 
             // Print the actual secret number (for testing/demo purposes)
-            System.out.println("(Correct secret number was: " + pinPad.returnSecretNumber() + ")");
+            System.out.println("(Correct secret number was " + pinPad.returnSecretNumber() + ")");
             System.out.println();
 
             // Add the actual secret number into the array
@@ -126,14 +127,27 @@ public class PinApp {
     }
 
     private static void printInstructionsForKeyAndDirectionNumbers(int squareSize) {
+        System.out.println("SQUARE SIZE: " + squareSize);
         System.out.println("Key and direction numbers must be between");
         System.out.println("0 and " + (squareSize * squareSize - 1));
         System.out.println();
     }
 
     private static int askSquareSize(Scanner sc) {
-        System.out.print("Enter pad size (less than " + MAX_ALLOWED_SQUARE_SIZE + "): ");
-        int squareSize = sc.nextInt();
+        System.out.println("Enter pad size.");
+        System.out.println("Must be between " + MIN_ALLOWED_SQUARE_SIZE + " and " +  MAX_ALLOWED_SQUARE_SIZE + " (inclusive): ");
+        int squareSize = sc.nextInt(); // Why does only the first input stick??
+        System.out.println("You entered: " + squareSize);
+        if(squareSize > MAX_ALLOWED_SQUARE_SIZE){
+            System.out.println("<!> Square size must be less than or equal to " + MAX_ALLOWED_SQUARE_SIZE + " <!>");
+            System.out.println();
+            askSquareSize(sc);
+        }
+        if(squareSize < MIN_ALLOWED_SQUARE_SIZE){
+            System.out.println("<!> Square size must be greater than or equal to " + MIN_ALLOWED_SQUARE_SIZE + " <!>");
+            System.out.println();
+            askSquareSize(sc);
+        }
         System.out.println();
         return squareSize;
     }
