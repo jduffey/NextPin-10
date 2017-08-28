@@ -134,6 +134,14 @@ public class PinApp {
     }
 
     private static int askSquareSize(Scanner sc) {
+        int answer = -1;
+        while (answer == -1) {
+            answer = askTheActualSquareSizeQuestion(sc);
+        }
+        return answer;
+    }
+
+    private static int askTheActualSquareSizeQuestion(Scanner sc) {
         System.out.println("Enter pad size.");
         System.out.println("Must be between " + MIN_ALLOWED_SQUARE_SIZE + " and " +  MAX_ALLOWED_SQUARE_SIZE + " (inclusive): ");
         int squareSize = sc.nextInt(); // Why does only the first input stick??
@@ -141,13 +149,14 @@ public class PinApp {
         if(squareSize > MAX_ALLOWED_SQUARE_SIZE){
             System.out.println("<!> Square size must be less than or equal to " + MAX_ALLOWED_SQUARE_SIZE + " <!>");
             System.out.println();
-            askSquareSize(sc);
+            return -1;
         }
         if(squareSize < MIN_ALLOWED_SQUARE_SIZE){
             System.out.println("<!> Square size must be greater than or equal to " + MIN_ALLOWED_SQUARE_SIZE + " <!>");
             System.out.println();
-            askSquareSize(sc);
+            return -1;
         }
+
         System.out.println();
         return squareSize;
     }
