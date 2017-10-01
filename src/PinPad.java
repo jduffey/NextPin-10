@@ -52,7 +52,7 @@ public class PinPad {
                     + returnHorizontalDisplacementFactor()
                     + squareSize
                     * ((((indexOfInterimSecretNumber + (returnHorizontalDisplacementFactor() + squareSize))
-                    % squareSize + Math.abs(returnHorizontalDisplacementFactor())) / squareSize));
+                    % squareSize - returnHorizontalDisplacementFactor()) / squareSize));
         }
         return indexOfInterimSecretNumber;
     }
